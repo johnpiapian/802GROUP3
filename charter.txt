@@ -1,6 +1,7 @@
-Group Charter: Group 802-3 
-Meetings:  List time 
-Group Contacts: 
+Group Charter: Group 802-3
+Meetings:  Tuesday, 2:30-3:50pm
+Group Contacts: Nick, George, Sut, Colin, Humraj
+
 Goals: 
 1. To adhere well as a group, respecting each member, and supporting each member by 
 working together to accomplish the goals listed below and adhering to this charter. 
@@ -8,7 +9,7 @@ working together to accomplish the goals listed below and adhering to this chart
 develop a quality product worth an “A”.  
 3. To attain practical knowledge and experience of what it means to be a software engineer 
 and to familiarize ourselves with the methods and practices that are required to pull 
-together a team project.  
+together a team project.
 Work Norms: 
 1. Time commitment required by each group member:  
 Time commitment is a difficult thing to determine seeing one member may be able to 
@@ -27,6 +28,7 @@ Ground Rules:
 Meetings: 
  
 1. Length of meetings: 
+The main meetin of the week is during lab (Tuesday 2:30-3:50).
 Meetings may have to take as long as it takes, however meetings longer than 1 ½ hours 
 are discouraged. The purpose of meetings is to establish communication and give 
 direction to the project. Meetings once a week should be enough unless it is decided by 
@@ -35,10 +37,7 @@ place through the group email. It is understood that if a meeting takes too long
 may have to leave for classes or work obligations. This type of situation will not 
 constitute and offense. 
  
- 
- 
- 
-Group Charter: Your Team Name  
+Group Charter: 802GROUP3
 2. Missing a meeting: 
 An occasional missing of a meeting can be accepted. If however an individual repeatedly 
 misses a meeting without good cause, some disciplinary action may have to be taken. 
@@ -50,7 +49,7 @@ Two meetings missed without emailed valid excuse will result in a minor offence.
 will result in a major offence. 
  
 3. Tardiness to meetings: 
-A person being obviously late for a meeting and not fitting the structure of „on time‟ shall 
+A person being obviously late for a meeting and not fitting the structure of "on time" shall 
 be given over to disciplinary action as described in minor offence. On time means the 
 time the meeting is scheduled to start (3:30pm on Mondays). If an individual arrives at a 
 meeting after the start time and the meeting has yet to get into purposeful conversation 
@@ -59,27 +58,6 @@ meeting is clearly underway when the individual arrives then at the end of the m
 will be discussed as to whether disciplinary action will have to be taken. Being late to a 
 meeting more than once constitutes a minor offence. Records of being late will be 
 recorded by group note taker.  
- 
-4. Phone use during meetings: 
-As we only have an hour each week to meet, it should not be too much to ask that outside 
-phone calls should be prohibited unless they are perceived to be an emergency. The 
-taking of phone calls will come into question if they are taken often during meetings and 
-the offender will be politely asked to discontinue. If the behavior continues, it will be 
-discussed among the group as to whether it should be a minor offense. Checking a text 
-message will be allowed as well as sending an occasional text to let someone know you 
-are in a meeting and will get back to them. However social texting will not be allowed 
-and the offender will again be politely asked to stop. If the behavior continues it will be 
-discussed among the group as to whether it should be a minor offence.  
- 
-5. Food and drink during meetings: 
-There is no limit to what food can be consumed during meetings as long as the facility we 
-are meeting in allows it and people clean up after themselves. If an individual‟s food 
-consumption is disruptive during a meeting, they will be politely asked to be less 
-disruptive. If it continues, their food may be confiscated. They will have a new chance at 
-the next meeting. If disruptive eating continues week after week, food may be banned at 
-meetings via a majority decision by the group. If a member does not clean up after 
-themselves there will be a warning. After the first warning it will constitute a minor 
-offense.  
  
 Group communication and interaction:  
  
