@@ -1,13 +1,19 @@
 # Group Charter: Group 802-3
 ### Meetings:  Tuesday, 2:30-3:50pm
-##### Group Contacts: Nick, George, Sut, Colin, Humraj
+##### Group Contacts: 
+- Nick
+ - nickigl@uwm.edu
+- George
+- Sut
+- Colin
+- Humraj
 
-##### Goals:
+#### Goals:
 1. To adhere well as a group, respecting each member, and supporting each member by 
 working together to accomplish the goals listed below and adhering to this charter. 
 
 2. To gain a more intimate knowledge of the software life cycle by working as a group to 
-develop a quality product worth an “A”.  
+develop a quality product the letter grade of an “A”.  
 
 3. To attain practical knowledge and experience of what it means to be a software engineer 
 and to familiarize ourselves with the methods and practices that are required to pull 
@@ -28,7 +34,7 @@ with that member are further detailed in the ground rules.
  
 #### Ground Rules: 
  
-- **Meetings:**
+- ****Meetings:****
  
 1. Length of meetings: 
 The main meetin of the week is during lab (Tuesday 2:30-3:50).
@@ -38,7 +44,7 @@ direction to the project. Meetings once a week should be enough unless it is dec
 the group that additional meetings should be scheduled. This communication should take 
 place through the group email. It is understood that if a meeting takes too long, members 
 may have to leave for classes or work obligations. This type of situation will not 
-constitute and offense. 
+constitute an offense. 
  
 2. Missing a meeting: 
 An occasional missing of a meeting can be accepted. If however an individual repeatedly 
@@ -53,26 +59,23 @@ will result in a major offence.
 3. Tardiness to meetings: 
 A person being obviously late for a meeting and not fitting the structure of "on time" shall 
 be given over to disciplinary action as described in minor offence. On time means the 
-time the meeting is scheduled to start (3:30pm on Mondays). If an individual arrives at a 
+time the meeting is scheduled to start (2:30pm on Tuesdays). If an individual arrives at a 
 meeting after the start time and the meeting has yet to get into purposeful conversation 
 then it may be overlooked. However if there is no good excuse for being late and the 
 meeting is clearly underway when the individual arrives then at the end of the meeting it 
 will be discussed as to whether disciplinary action will have to be taken. Being late to a 
-meeting more than once constitutes a minor offence. Records of being late will be 
-recorded by group note taker.  
+meeting more than once constitutes a minor offence.
  
 - **Group communication and interaction:**
  
 1. Regular communication: 
-Group Charter: Your Team Name  
-Regular communication should occur every two days via email. This communication 
+Regular communication should occur every two days via teams. This communication 
 should include a simple update on ones progress of their portion of the project. When a 
-member finishes their portion of the project, they should attach their finished product in 
-an email to all group members. If it cannot be attached to the email, the member shall 
-explain a way to view the finished product. If a member forgets to post progress, any 
-member can send an inquiry email to the person who forgot. If the email is not responded 
-to in 24 hours, the group will begin to take on that member‟s responsibilities through the 
-decision making process stated in part six of this section. If the member has a good 
+member finishes their portion of the project, they should submit a pull request to the group
+repository allowing for each group members approval. If a member forgets to submit their 
+progress, any member can send an inquiry teams message to the person who forgot. If the teams 
+message is not responded to in 24 hours, the group will begin to take on that member‟s 
+responsibilities through the decision making process stated in part six of this section. If the member has a good 
 reason for not responding, it will be taken into consideration as to whether there will be 
 disciplinary action; otherwise it will be an immediate minor offense. If however, the 
 member responds within the 24 hour time period stating they forgot, no disciplinary 
@@ -82,9 +85,9 @@ as soon as possible.
  
 2. Group communication on tardiness/missed meetings and meeting information: 
 If a member has prior knowledge of a missed meeting or tardiness of a day or more, that 
-member shall send an email to all group members signifying such. If it is the day of the 
+member shall send an teams message to all group members signifying such. If it is the day of the 
 meeting and a group member is going to miss the meeting or knows they are going to be 
-tardy by more than five minutes, that member shall send a text message to all group 
+tardy by more than five minutes, that member shall send a teams message to all group 
 members informing them of the situation. Failure to do so more than once will result in a 
 minor offense.  
  
@@ -110,7 +113,6 @@ notes at all the meetings and to relay the important information and any decisio
 during the meeting to the other members via email by the end of the next day. They will 
 also be responsible for recording any disciplinary actions taken toward any member of 
 the group. 
-Group Charter: Your Team Name  
 Han Solo – This role belongs to the agenda maker. This member of the rebellion is 
 responsible for making an agenda of subjects which need to be covered in the upcoming 
 meeting. The agenda shall be emailed to the group before Saturday for a Monday meeting 
@@ -208,7 +210,7 @@ displayed along with testimonies from at least 2 other group members and a log o
 offenses. If available, the offending members work will be confiscated and termed as 
 “belonging to the group”.  
  
-We, the team named ________ agree with the Group Charter and will try our best to uphold it. 
+We, the team named 802GROUP3 agree with the Group Charter and will try our best to uphold it. 
  
  
 Name _____________________________________ Date _______________ 
