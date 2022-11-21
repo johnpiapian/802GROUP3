@@ -1,19 +1,18 @@
 # Group Charter: Group 802-3
 ### Meetings:  Tuesday, 2:30-3:50pm
 ##### Group Contacts: 
-- Nick
- - nickigl@uwm.edu
+- Nick (nickigl@uwm.edu)
 - George
-- Sut
+- Sut (suttuang@uwm.edu)
 - Colin
-- Humraj
+- Humraj (hsbharya@uwm.edu)
 
 #### Goals:
 1. To adhere well as a group, respecting each member, and supporting each member by 
 working together to accomplish the goals listed below and adhering to this charter. 
 
 2. To gain a more intimate knowledge of the software life cycle by working as a group to 
-develop a quality product the letter grade of an “A”.  
+develop a quality product worth the letter grade of an “A”.  
 
 3. To attain practical knowledge and experience of what it means to be a software engineer 
 and to familiarize ourselves with the methods and practices that are required to pull 
@@ -37,7 +36,7 @@ with that member are further detailed in the ground rules.
 - ****Meetings:****
  
 1. Length of meetings: 
-The main meetin of the week is during lab (Tuesday 2:30-3:50).
+The main meeting of the week is during lab (Tuesday 2:30-3:50).
 Meetings may have to take as long as it takes, however meetings longer than 1 ½ hours 
 are discouraged. The purpose of meetings is to establish communication and give 
 direction to the project. Meetings once a week should be enough unless it is decided by 
@@ -80,18 +79,18 @@ reason for not responding, it will be taken into consideration as to whether the
 disciplinary action; otherwise it will be an immediate minor offense. If however, the 
 member responds within the 24 hour time period stating they forgot, no disciplinary 
 action will be taken. If a member is having problems with their portion of the work, they 
-should let the rest of the group knew immediately so they can received any needed help 
+should inform the group immediately, so they can receive any needed help 
 as soon as possible.  
  
-2. Group communication on tardiness/missed meetings and meeting information: 
+1. Group communication on tardiness/missed meetings and meeting information: 
 If a member has prior knowledge of a missed meeting or tardiness of a day or more, that 
-member shall send an teams message to all group members signifying such. If it is the day of the 
+member shall send a teams message to all group members signifying such. If it is the day of the 
 meeting and a group member is going to miss the meeting or knows they are going to be 
 tardy by more than five minutes, that member shall send a teams message to all group 
 members informing them of the situation. Failure to do so more than once will result in a 
 minor offense.  
  
-3. Communication ethics: 
+1. Communication ethics: 
 There shall be an understanding among group members that all opinions or input by any 
 individual member is valued and will be respected, even if disagreed with. People and/or 
 their opinions shall not in any way be degraded or dismissed but all opinions shall have 
@@ -104,7 +103,7 @@ this situation happens more than three times the member has a right to go to the
 state their case. If the problem is not solved by the TA, the opportunity is then open to 
 state their case to Rock. 
  
-4. Group structure: 
+1. Group structure: 
 The group shall have the following roles to help the group be more efficient: 
 Yoda – This role belongs to the group leader. This jedi master is responsible for the flow 
 of the meeting and has a helpful role in the delegation of responsibilities. 
@@ -121,12 +120,12 @@ If any member in a role does not follow through with his responsibilities on mul
 occasions or if for some reason a member is not able to perform their duties, they shall be 
 replaced by group decision.  
  
-5. Decision making: 
+1. Decision making: 
 Any decisions which need to be made about the project, project direction or disciplinary 
 action will be made by a majority vote. Any decisions about delegation will be covered in 
 part six. 
  
-6. Group decisions on delegation: 
+1. Group decisions on delegation: 
 The delegation of responsibilities to group members will be decided in the following 
 fashion. The responsibilities will be discussed and decided on as a group decision. Then 
 each group member has the opportunity to volunteer for the task he may want. If a group 
@@ -143,7 +142,7 @@ situation. If some is asked to share what they think or is asked to give others 
 share, but they do not, and their under or over sharing is blocking the flow of the meeting, 
 then by group decision it may be considered a minor offense.  
  
-2. Work not up to standard: 
+1. Work not up to standard: 
 Group standards, regarding quality and timeliness of work, are important to uphold if we 
 aim to succeed as a group. With goal 2 in mind we should always be putting forth the 
 effort necessary to submit our best work. However, if there is a problem it should be 
@@ -159,14 +158,14 @@ However, a group member may be able to redeem himself. If said member continues 
 perform above expectations for at least two weeks he shall be returned to full member 
 status by way of this clause. 
  
-3. Group members unprepared: 
+1. Group members unprepared: 
 It is understood that people are busy with other classes and school work.  If by group 
 consciousness it is obvious that a member is unprepared for a meeting, and their 
 unpreparedness creates a hindrance to the group and project, then disciplinary action will 
 have to take place. Unpreparedness of this form will immediately result in a warning then 
 a minor offence hereafter. 
  
-4. Workload too heavy: 
+1. Workload too heavy: 
 If with the time restraints and number of group members actively participating is not 
 sufficient enough to complete the task, a plea of mercy will be sent to the Rock via email 
 and in person which logs the details of the amount of work to be done, the status of how 
@@ -210,10 +209,9 @@ displayed along with testimonies from at least 2 other group members and a log o
 offenses. If available, the offending members work will be confiscated and termed as 
 “belonging to the group”.  
  
-We, the team named 802GROUP3 agree with the Group Charter and will try our best to uphold it. 
- 
- 
-Name _____________________________________ Date _______________ 
+We, the team named The Black Jaguars agree with the Group Charter and will try our best to uphold it. 
+
+Name _____Sut Tuang_________________________ Date ____11/21/2022____ 
  
  
 Name _____________________________________  Date _______________ 
