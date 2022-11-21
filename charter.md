@@ -4,7 +4,7 @@
 - Nick (nickigl@uwm.edu)
 - George
 - Sut (suttuang@uwm.edu)
-- Colin
+- Colin (youngcm@uwm.edu)
 - Humraj (hsbharya@uwm.edu)
 
 #### Goals:
@@ -214,7 +214,7 @@ We, the team named The Black Jaguars agree with the Group Charter and will try o
 Name _____Sut Tuang_________________________ Date ____11/21/2022____ 
  
  
-Name _____________________________________  Date _______________ 
+Name _____Colin Young_____________________  Date ____11/21/2022_____ 
  
  
 Name _____________________________________  Date _______________ 
