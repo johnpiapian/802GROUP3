@@ -1,7 +1,7 @@
 # Group Charter: Group 802-3
 ### Meetings:  Tuesday, 2:30-3:50pm
 ##### Group Contacts: 
-- Nick (nickigl@uwm.edu)
+- Nick (njigl@uwm.edu)
 - George
 - Sut (suttuang@uwm.edu)
 - Colin (youngcm@uwm.edu)
@@ -217,7 +217,7 @@ Name _____Sut Tuang_________________________ Date ____11/21/2022____
 Name _____Colin Young_____________________  Date ____11/21/2022_____ 
  
  
-Name _____________________________________  Date _______________ 
+Name _____Nicholas Igl_____________________  Date ___11/21/2022_____
  
  
 Name _____________________________________  Date _______________ 
