@@ -2,7 +2,7 @@
 ### Meetings:  Tuesday, 2:30-3:50pm
 ##### Group Contacts: 
 - Nick (njigl@uwm.edu)
-- George
+- George (kutsunis@uwm.edu)
 - Sut (suttuang@uwm.edu)
 - Colin (youngcm@uwm.edu)
 - Humraj (hsbharya@uwm.edu)
@@ -220,7 +220,7 @@ Name _____Colin Young_____________________  Date ____11/21/2022_____
 Name _____Nicholas Igl_____________________  Date ___11/21/2022_____
  
  
-Name _____________________________________  Date _______________ 
+Name _____George Kutsunis___________________  Date _____11/21/2022__
  
  
 Name _____________________________________  Date _______________ 
