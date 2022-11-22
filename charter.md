@@ -2,7 +2,7 @@
 ### Meetings:  Tuesday, 2:30-3:50pm
 ##### Group Contacts: 
 - Nick (nickigl@uwm.edu)
-- George
+- George (kutsunis@uwm.edu)
 - Sut (suttuang@uwm.edu)
 - Colin
 - Humraj (hsbharya@uwm.edu)
@@ -214,7 +214,7 @@ We, the team named The Black Jaguars agree with the Group Charter and will try o
 Name _____Sut Tuang_________________________ Date ____11/21/2022____ 
  
  
-Name _____________________________________  Date _______________ 
+Name _____George Kutsunis___________________  Date ____11/22/2022___ 
  
  
 Name _____________________________________  Date _______________ 
