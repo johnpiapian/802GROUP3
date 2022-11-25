@@ -18,7 +18,7 @@ class Course(models.Model):
 class Section(models.Model):
     id = models.AutoField(primary_key=True)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    teacher_id = models.ForeignKey(User, on_delete=models.CaSCADE)
+    teacher_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False)
     room_number = models.IntegerField(blank=False)
     start_time = models.DateTimeField()
