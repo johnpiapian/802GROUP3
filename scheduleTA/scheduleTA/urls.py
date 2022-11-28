@@ -19,5 +19,5 @@ from app.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view()) ## look @ "views.py -> class Home" to see what this loads
+    path('', Home.as_view(), name='home') ## look @ "views.py -> class Home" to see what this loads
 ]
