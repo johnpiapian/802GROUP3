@@ -1,0 +1,38 @@
+html, body {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    color: cornflowerblue;
+}
+table {
+/*  uncomment for debug tables  */
+/*  border: 2px solid;  */
+/*  border-color: red; */
+}
+td {
+/*  uncomment for debug tables  */
+/*  border: 2px dotted;  */
+/*  border-color: red; */
+}
+.big_text {
+    /* large text */
+    font-size: 30px;
+}
+.med_text {
+    /* medium text */
+    font-size: 25px;
+}
+.small_text {
+    /* small text */
+    font-size: 20px;
+}
+.warning_text {
+    /* small text */
+    font-size: 10px;
+    text-align: center;
+}
+.center {
+    /* To use this add class="center" to any HTML tag */
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
