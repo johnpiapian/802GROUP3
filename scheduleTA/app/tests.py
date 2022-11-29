@@ -15,7 +15,6 @@ class Login(TestCase):
         self.mockUser = Client()
         self.userList = {"admin": "password", "colin": "1234", "user": "Password"}
         for key in self.userList:
-            # will need to change to fit implemented models
             User(role=3, username=key, password=self.userList[key]).save()
 
     def test_incorrectPassword(self):
@@ -43,14 +42,12 @@ class Login(TestCase):
 class newUser(TestCase):
 
     def setUp(self):
-        def setUp(self):
-            # set up database for tests
-            self.mockUser = Client()
-            self.userList = {"admin": "password", "colin": "1234", "user": "Password"}
+        # set up database for tests
+        self.mockUser = Client()
+        self.userList = {"admin": "password", "colin": "1234", "user": "Password"}
 
-            for key in self.userList:
-                # will need to change to fit implemented models
-                User(role=2, username=key, password=self.userList[key]).save()
+        for key in self.userList:
+            User(role=2, username=key, password=self.userList[key]).save()
 
     def test_nonAdminUser(self):
         #if session user is not admin redirect to homepage
