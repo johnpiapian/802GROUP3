@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.views import Home
+from app.views import EditProfile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name='home') ## look @ "views.py -> class Home" to see what this loads
+    path('', Home.as_view(), name='home'), ## look @ "views.py -> class Home" to see what this loads
+    path('edit_profile/', EditProfile.as_view(), name = 'edit profile')
 ]

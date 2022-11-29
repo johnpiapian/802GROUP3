@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 
@@ -6,3 +6,8 @@ from django.views import View
 class Home(View):
     def get(self, request):
         return render(request, 'home.html', {})
+    def post(self, request):
+        return redirect('/edit_profile')
+class EditProfile(View):
+    def get(self, request):
+        return render(request, 'edit.html', {})
