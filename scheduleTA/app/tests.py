@@ -59,7 +59,7 @@ class newUser(TestCase):
         session.save()
         resp = self.mockUser.get("/createUser/", follow = True)
         self.assertTemplateUsed(resp, 'homePage.html')
-        pass
+        
 
     def test_userNameTaken(self):
         for key in self.userList:
