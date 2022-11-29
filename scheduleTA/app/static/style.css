@@ -36,3 +36,60 @@ td {
     margin-left: auto;
     margin-right: auto;
 }
+
+.edit-info-send-btn {
+    background-color: gray;
+    color: white;
+    width:150px;
+    height:30px;
+    margin-top: 20px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #d9dcfa;
+    height:100%;
+    border-right:1px dashed black
+  }
+
+  li a {
+    display: block;
+    color: rgb(15, 16, 71);
+    padding: 8px 16px;
+    text-decoration: none;
+    height:50px;
+    padding-top:30px;
+    font-size:20px;
+  }
+
+  li a.active {
+    background-color: #2565d1;
+    color: white;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  .left-side{
+    width:250px;
+    float: left;
+    height:1000px;
+  }
+  .main-content{
+    margin-left:250px;
+    padding-top: 50px;
+  }
+
+  .input-field{
+    width:250px;
+  }
+
+  .td-label{
+    text-align: left;
+  }
