@@ -3,7 +3,7 @@
 
 from tests import test_SetUp
 
-class newUser(test_SetUp.UserList):
+class newUser(test_SetUp):
 
     def setUp(self) -> None:
         super().setUp()

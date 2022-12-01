@@ -1,20 +1,22 @@
 
 from classes import UserClass
 from tests import test_SetUp
-class UserUnitTests(test_SetUp.UserList):
+class UserUnitTests(test_SetUp):
 
     def setUp(self):
         super().setUp()
 
     def test_userExists(self):
-        self.assertEqual(True,UserClass.userExists('Colin'))
-        self.assertEqual(True,UserClass.userExists('cOlIn'))
+        for i in self.userList:
+            self.assertEqual(True, UserClass.userExists(i.name))
+            self.assertEqual(True, UserClass.userExists(i.name.upper()))
         self.assertEqual(False,UserClass.userExists(''))
         self.assertEqual(False,UserClass.userExists('A'))
         self.assertEqual(False,UserClass.userExists(1234))
     def test_getUser(self):
-        self.assertEqual(self.Colin, UserClass.getUser('Colin'))
-        self.assertEqual(self.Colin, UserClass.getUser('cOlIn'))
+        for i in self.userList:
+            self.assertEqual(i,UserClass.getUser(i.name))
+            self.assertEqual(i,UserClass.getUser(i.name.upper()))
         self.assertEqual(None, UserClass.getUser(''))
         self.assertEqual(None,UserClass.getUser('A'))
         self.assertEqual(None, UserClass.getUser(1234))

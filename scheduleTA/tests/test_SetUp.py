@@ -1,8 +1,8 @@
 from django.test import TestCase, Client
 ##need to import user models once they are implemented.
-from app.models import User
-from tests import test_SetUp
-class UserList(TestCase):
+from app.models import User, Course, Section
+
+class dbSetup(TestCase):
     # set up database for tests
     mockUser = None
     userList = None
@@ -16,4 +16,12 @@ class UserList(TestCase):
         self.Sut = User.objects.create(role='P', name='Sut', password='abcd')
 
         self.userList = User.objects.all()
+
+        self.Math = Course.objects.create(name='Math',credit='4')
+        self.Sci = Course.objects.create(name='Science',credit='3')
+        self.eng = Course.objects.create(name='English',creidt='4')
+
+        self.courseList = Course.objects.all()
+
+
 

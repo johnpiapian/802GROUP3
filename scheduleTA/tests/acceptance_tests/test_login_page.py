@@ -6,7 +6,7 @@ from tests import test_SetUp
 # Create your tests here.
 
 
-class Login(test_SetUp.UserList):
+class Login(test_SetUp):
 
     def setUp(self):
         super().setUp()
