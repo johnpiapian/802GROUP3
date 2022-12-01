@@ -6,7 +6,7 @@ class UserList(TestCase):
     # set up database for tests
     mockUser = None
     userList = None
-    def setUp(self) -> None:
+    def setUp(self):
         self.mockUser = Client()
         self.Admin = User.objects.create(role='A', username='Admin1!', password='Password')
         self.Colin = User.objects.create(role='A', username='Colin', password='1234')

@@ -1,8 +1,10 @@
-from django.test import TestCase
-from app.models import User
-from classes import UserClass
 
-class LoginUnitTests(TestCase):
+from classes import UserClass
+from tests import test_SetUp
+class LoginUnitTests(test_SetUp.UserList):
+
+    def setUp(self):
+        super().setUp()
 
     def test_role(self):
         user = UserClass('A', 'Colin', 'abcd')
@@ -37,13 +39,22 @@ class LoginUnitTests(TestCase):
         self.assertEqual('1234',user.password)
         self.assertEqual('1234',user.getPassword())
 
-    def test_AddUser(self):
+    def test_getUser(self):
+        user = UserClass.getUser('Colin')
+        self.assertEqual(self.Colin, user)
+
+    def test_addUser(self):
         user = UserClass('A','John','Test')
         self.assertEqual(True, user.addUser())
-        user = UserClass('A', 'John', 'Test')
+        user = UserClass('A', 'Colin', 'Test')
         self.assertEqual(False, user.addUser())
-        user = UserClass('A', 'Susan', 'Test')
-        self.assertEqual(True, user.addUser())
+        user = UserClass('P', 'Colin', '1234')
+        self.assertEqual(False, user.addUser())
+        user = UserClass('P', 'CoLiN', '1234')
+        self.assertEqual(False, user.addUser())
 
-    def test_RemoveUser(self):
-        pass
+    def test_deleteUser(self):
+        self.assertContains(self.userList,self.Colin)
+        UserClass.deleteUser('Colin')
+        self.assertNotContains(self.userList, self.Colin)
+        UserClass.deleteUser('Colin')
