@@ -25,11 +25,6 @@ td {
     /* small text */
     font-size: 20px;
 }
-.warning_text {
-    /* small text */
-    font-size: 10px;
-    text-align: center;
-}
 .center {
     /* To use this add class="center" to any HTML tag */
     text-align: center;

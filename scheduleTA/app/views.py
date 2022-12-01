@@ -18,13 +18,9 @@ class Home(View):
             # if above code fails, user doesn't exist, set the boolean
             no_such_user = True
         if no_such_user:
-            # make a new user
-            m = User(name=request.POST['name'], password=request.POST['password'])
-            m.save()
-            request.session["name"] = m.name
-            return redirect("homepage_0")
+            return render(request, 'home.html', {"message":"Login Error: Invalid username, try again."})
         elif bad_password:
-            return render(request, 'home.html', {"message":"bad password! watch out for jaguars!!"})
+            return render(request, 'home.html', {"message":"Login Error: Invalid password, try again."})
         else:
             request.session["name"] = m.name
             return redirect("homepage_0")
