@@ -6,6 +6,7 @@ class LoginUnitTests(TestCase):
 
     def test_role(self):
         user = UserClass('A', 'Colin', 'abcd')
+
         self.assertEqual('A', user.roll)
         user = UserClass('a', 'Colin', 'abcd')
         self.assertEqual('A', user.roll)
