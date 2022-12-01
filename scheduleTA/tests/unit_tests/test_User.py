@@ -6,55 +6,37 @@ class LoginUnitTests(test_SetUp.UserList):
     def setUp(self):
         super().setUp()
 
-    def test_role(self):
-        user = UserClass('A', 'Colin', 'abcd')
-
-        self.assertEqual('A', user.roll)
-        user = UserClass('a', 'Colin', 'abcd')
-        self.assertEqual('A', user.roll)
-        user = UserClass('Admin', 'Colin', 'abcd')
-        self.assertEqual('A', user.roll)
-        with self.assertRaises(ValueError, msg="Roll must be an admin, professor, or TA"):
-            user = UserClass('B', 'Colin', 'abcd')
-            user = UserClass('', 'Colin', 'abcd')
-            user = UserClass(1, 'Colin', 'abcd')
-
-    def test_Name(self):
-        user = UserClass('A','COLIN','abcd')
-        self.assertEqual('COLIN', user.name)
-        user = UserClass('A', 'colin', 'abcd')
-        self.assertEqual('COLIN', user.name)
-        user = UserClass('A', 'CoLiN', 'abcd')
-        self.assertEqual('COLIN', user.name)
-        user = UserClass('A',1234,'abc')
-        self.assertEqual('1234', user.name)
-
-    def test_password(self):
-        user = UserClass('A', 'Colin', 'abcd')
-        self.assertEqual('abcd', user.password)
-        user = UserClass('A', 'Colin', 'AbCd')
-        self.assertNotEqual('ABCD', user.Password)
-        self.assertNotEqual('ABCD', user.getPassword())
-        user = UserClass('A', 'Colin', 1234)
-        self.assertEqual('1234',user.password)
-        self.assertEqual('1234',user.getPassword())
-
+    def test_userExists(self):
+        self.assertEqual(True,UserClass.userExists('Colin'))
+        self.assertEqual(True,UserClass.userExists('cOlIn'))
+        self.assertEqual(False,UserClass.userExists(''))
+        self.assertEqual(False,UserClass.userExists('A'))
+        self.assertEqual(False,UserClass.userExists(1234))
     def test_getUser(self):
-        user = UserClass.getUser('Colin')
-        self.assertEqual(self.Colin, user)
+        self.assertEqual(self.Colin, UserClass.getUser('Colin'))
+        self.assertEqual(self.Colin, UserClass.getUser('cOlIn'))
+        self.assertEqual(None, UserClass.getUser(''))
+        self.assertEqual(None,UserClass.getUser('A'))
+        self.assertEqual(None, UserClass.getUser(1234))
 
     def test_addUser(self):
-        user = UserClass('A','John','Test')
-        self.assertEqual(True, user.addUser())
-        user = UserClass('A', 'Colin', 'Test')
-        self.assertEqual(False, user.addUser())
-        user = UserClass('P', 'Colin', '1234')
-        self.assertEqual(False, user.addUser())
-        user = UserClass('P', 'CoLiN', '1234')
-        self.assertEqual(False, user.addUser())
+        self.assertEqual(True, UserClass.addUser(['A','John','Test']))
+        self.assertEqual(False, UserClass.addUser(['A', 'Colin', 'Test']))
+        self.assertEqual(False, UserClass.addUser(['P', 'Colin', '1234']))
+        self.assertEqual(False, UserClass.addUser( ['A', 'CoLiN', '1234']))
+
+    def test_updateUser(self):
+        self.assertEqual(True, UserClass.updateUser(['A','Colin','newPassword']))
+        self.assertEqual(False, UserClass.updateUser(['A','Colin','newPassword']))
+        self.assertEqual(True, UserClass.updateUser(['T','Colin','newPassword']))
+        self.assertEqual(False, UserClass.updateUser( ['A','Colin','']))
+        self.assertEqual(False, UserClass.updateUser(['','Colin','newPassword']))
+        self.assertEqual(False, UserClass.updateUser(['A','asdjksdjkdsf','newPassword']))
+
 
     def test_deleteUser(self):
         self.assertContains(self.userList,self.Colin)
-        UserClass.deleteUser('Colin')
+        self.assertEqual(True, UserClass.deleteUser('colin'))
         self.assertNotContains(self.userList, self.Colin)
-        UserClass.deleteUser('Colin')
+        self.assertEqual(False,UserClass.deleteUser('colin'))
+        self.assertEqual(False, UserClass.deleteUser(''))

@@ -12,12 +12,12 @@ class Login(test_SetUp.UserList):
         super().setUp()
     def test_incorrectPassword(self):
         for i in self.userList:
-            resp = self.mockUser.post("/", {"name": i.username, "password": "a"}, follow=True)
+            resp = self.mockUser.post("/", {"name": i.name, "password": "a"}, follow=True)
             self.assertEqual(resp.context["message"],"Password is incorrect")
 
     def test_noPassword(self):
         for i in self.userList:
-            resp = self.mockUser.post("/", {"name": i.username, "password": ""}, follow=True)
+            resp = self.mockUser.post("/", {"name": i.name, "password": ""}, follow=True)
             self.assertEqual(resp.context["message"],"Password is incorrect")
 
     def test_noSuchUser(self):
@@ -28,6 +28,6 @@ class Login(test_SetUp.UserList):
 
     def test_goodLoggin(self):
         for i in self.userList:
-            resp = self.mockUser.post("/", {"name": i.username, "password": i.password}, follow=True)
+            resp = self.mockUser.post("/", {"name": i.name, "password": i.password}, follow=True)
             self.assertEqual(resp.url,'homepage_0/')
 

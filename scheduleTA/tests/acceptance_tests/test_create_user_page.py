@@ -18,7 +18,7 @@ class newUser(test_SetUp.UserList):
 
     def test_userNameTaken(self):
         for i in self.userList:
-            resp = self.mockUser.post("/createUser/", {"name": i.username, "password": "pass", "role": "A"}, follow=True)
+            resp = self.mockUser.post("/createUser/", {"name": i.name, "password": "pass", "role": "A"}, follow=True)
             self.assertEqual(resp.context["message"], "User already exists")
 
     def test_noPassword(self):

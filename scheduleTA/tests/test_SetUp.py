@@ -8,12 +8,12 @@ class UserList(TestCase):
     userList = None
     def setUp(self):
         self.mockUser = Client()
-        self.Admin = User.objects.create(role='A', username='Admin1!', password='Password')
-        self.Colin = User.objects.create(role='A', username='Colin', password='1234')
-        self.George = User.objects.create(role='T', username='George', password="1234")
-        self.Humraj = User.objects.create(role='T', username='Humraj', password='pAsSwOrD')
-        self.Nicholas = User.objects.create(role='P', username='Nicholas', password='a!2/}')
-        self.Sut = User.objects.create(role='P', username='Sut', password='abcd')
+        self.Admin = User.objects.create(role='A', name='Admin1!', password='Password')
+        self.Colin = User.objects.create(role='A', name='Colin', password='1234')
+        self.George = User.objects.create(role='T', name='George', password="1234")
+        self.Humraj = User.objects.create(role='T', name='Humraj', password='pAsSwOrD')
+        self.Nicholas = User.objects.create(role='P', name='Nicholas', password='a!2/}')
+        self.Sut = User.objects.create(role='P', name='Sut', password='abcd')
 
         self.userList = User.objects.all()
 
