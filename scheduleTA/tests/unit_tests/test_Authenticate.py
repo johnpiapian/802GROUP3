@@ -1,9 +1,8 @@
-from app.models import User, Course, Section
 from classes import AuthenticateClass
 from tests import test_SetUp
 
 
-class AuthenticateTest(test_SetUp.UserList):
+class AuthenticateTest(test_SetUp.dbSetup):
 
     def setUp(self):
         super().setUp()

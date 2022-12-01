@@ -1,12 +1,6 @@
-
-##need to import user models once they are implemented.
-
 from tests import test_SetUp
 
-# Create your tests here.
-
-
-class Login(test_SetUp):
+class Login(test_SetUp.dbSetup):
 
     def setUp(self):
         super().setUp()

@@ -1,7 +1,6 @@
-
 from classes import UserClass
 from tests import test_SetUp
-class UserUnitTests(test_SetUp):
+class UserUnitTests(test_SetUp.dbSetup):
 
     def setUp(self):
         super().setUp()

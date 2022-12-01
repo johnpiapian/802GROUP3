@@ -1,9 +1,6 @@
-
-##need to import user models once they are implemented.
-
 from tests import test_SetUp
 
-class newUser(test_SetUp):
+class newUser(test_SetUp.dbSetup):
 
     def setUp(self) -> None:
         super().setUp()

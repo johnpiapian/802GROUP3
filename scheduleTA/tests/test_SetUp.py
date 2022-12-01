@@ -17,9 +17,9 @@ class dbSetup(TestCase):
 
         self.userList = User.objects.all()
 
-        self.Math = Course.objects.create(name='Math',credit='4')
-        self.Sci = Course.objects.create(name='Science',credit='3')
-        self.eng = Course.objects.create(name='English',creidt='4')
+        self.Math = Course.objects.create(name='Math',credit=4)
+        self.Sci = Course.objects.create(name='Science',credit=3)
+        self.eng = Course.objects.create(name='English',creidt=4)
 
         self.courseList = Course.objects.all()
 
