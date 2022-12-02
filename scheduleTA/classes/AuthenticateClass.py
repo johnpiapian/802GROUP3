@@ -3,16 +3,22 @@ This class deals with things related to authentication
 """
 
 
-class AuthenticateClass:
+class Authenticate:
 
-    def __int__(self):
-        pass
+    def __init__(self, name, password):
+        self.name = name
+        self.password = password
+
+    def validateName(self) -> bool:
+        return 0 < len(self.name) < 21
+
+    def validatePassword(self) -> bool:
+        return 0 < len(self.password) < 21
 
     # return true if successful or false if not
-    # this will also set session if login was successful
-    def login(self, name, password) -> bool:
-        pass
-
-    # upon calling this method use should be logged out
-    def logout(self) -> bool:
-        pass
+    # use the model class to validate if user is valid
+    def validateUser(self) -> bool:
+        # this is just for testing purposes for now
+        if self.name.lower() == "john" and self.password == "123":
+            return True
+        return False
