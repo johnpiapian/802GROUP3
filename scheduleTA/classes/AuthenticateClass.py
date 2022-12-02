@@ -4,6 +4,10 @@ This class deals with things related to authentication
 
 
 class AuthenticateClass:
+
+    def __int__(self):
+        pass
+
     # return true if successful or false if not
     # this will also set session if login was successful
     def login(self, name, password) -> bool:

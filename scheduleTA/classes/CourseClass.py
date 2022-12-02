@@ -4,6 +4,10 @@ This class deals with things related Course
 
 
 class CourseClass:
+
+    def __int__(self):
+        pass
+
     # given a name check if there exists an account
     # associated with the name in the database
     def courseExists(self, name) -> bool:
