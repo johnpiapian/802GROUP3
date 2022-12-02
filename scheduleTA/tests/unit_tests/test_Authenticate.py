@@ -19,5 +19,5 @@ class AuthenticateTest(test_SetUp.dbSetup):
         session.save()
         self.assertEqual(True, AuthenticateClass.logout())
         self.assertEqual(None, session['user'])
-        self.assertEqual(False,AuthenticateTest.logout())
+        self.assertEqual(False,AuthenticateClass.logout())
 

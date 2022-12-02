@@ -26,7 +26,6 @@ class CourseUnitTest(test_SetUp.dbSetup):
         self.assertEqual(False,CourseClass.addCourse(['Gym','']))
 
 
-        pass
     def test_updateCourse(self):
         self.assertEqual(True, CourseClass.updateCourse(['Math','3']))
         self.assertEqual(False, CourseClass.updateCourse(['Math', '3']))
