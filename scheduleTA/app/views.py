@@ -11,3 +11,9 @@ class Home(View):
 class EditProfile(View):
     def get(self, request):
         return render(request, 'edit.html', {})
+class CreateNewUser(View):
+    def get(self, request):
+        return render(request, 'new_user.html', {})
+class CreateNewCourse(View):
+    def get(self, request):
+        return render(request, 'new_course.html', {})

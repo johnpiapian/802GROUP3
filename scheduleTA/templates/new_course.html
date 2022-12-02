@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Profile</title>
+    <title>Create New Course</title>
     <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
 </head>
 
@@ -17,28 +17,24 @@
             <li><a href="#notification">Notifications</a></li>
             <li><a href="#schedule">Schedule</a></li>
             <li><a href="#staff">Staff</a></li>
-            <li><a class="active" href="#edit_profile">Edit profile</a></li>
+            <li><a href="/edit_profile">Edit profile</a></li>
             <li><a href="#create_new_class">Create New Class</a></li>
             <li><a href="/create_new_user">Create New User</a></li>
-            <li><a href="/create_new_course">Create New Course</a></li>
+            <li><a class="active" href="/create_new_course">Create New Course</a></li>
             <li><a href="/">Log Out</a></li>
         </ul>
     </div>
     <div class="main-content">
-        <h1 class="center">Edit Info</h1>
+        <h1 class="center">Create New Course</h1>
         <form action="/" method="post">
             {% csrf_token %}
             <table class="center">
                 <!-- 'name=' below must match models.py variable names -->
                 <!-- check to see what Sut called them and fix name/password reference names -->
-                <tr><td class="med_text td-label">Old Password: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="password"></td></tr>
-                <tr><td class="med_text td-label">New Password: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="password"></td></tr>
-                <tr><td class="med_text td-label">Email*: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="name"></td></tr>
-                <tr><td class="med_text td-label">Address: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="name"></td></tr>
+                <tr><td class="med_text td-label">Course Name: </td></tr>
+                <tr><td><input type="text" class = "input-field" name="course_name"></td></tr>
+                <tr><td class="med_text td-label">Course Credit: </td></tr>
+                <tr><td><input type="text" class = "input-field" name="course_credit"></td></tr>
                 <tr><td><input class="center edit-info-send-btn" type="submit" value = "Send"></td></tr>
             </table>
         </form>
