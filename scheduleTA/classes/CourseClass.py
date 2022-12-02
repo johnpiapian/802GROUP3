@@ -15,7 +15,7 @@ class CourseClass:
 
     # given a valid name return the associated course
     # note: could also make it %like% instead of =equal=
-    def getCourse(self, name) -> object:
+    def getCourse(self, courseName) -> object:
         pass
 
     def getCourse(self, courseID) -> object:
@@ -27,9 +27,12 @@ class CourseClass:
 
     # given course object update the associated course
     # course object must contain name to find which record to update
-    def updateCourse(self, user) -> bool:
+    def updateCourse(self, courseObj) -> bool:
         pass
 
     # given a valid name delete the associated course
-    def deleteCourse(self, name) -> bool:
+    def deleteCourse(self, courseName) -> bool:
+        pass
+
+    def deleteCourse(self, courseID) -> bool:
         pass
