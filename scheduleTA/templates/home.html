@@ -21,15 +21,15 @@
         <tr><td class="med_text">UserID: </td></tr>
         <tr><td><input type="text" name="name"></td></tr>
         <tr><td class="med_text">Password: </td></tr>
-        <tr><td><input type="text" name="password"></td></tr>
-        <tr><td><input class="center" type="submit"></td></tr>
+        <tr><td><input type="password" name="password"></td></tr>
+        <tr><td><input class="center" type="submit" value="Login"></td></tr>
     </table>
 </form>
 
-<!-- If there is login error message views.py will pass it as var named 'message' below-->
-{{ message }}
+<!-- If there is login error message views.py will
+pass the message from views.py in a var named message -->
 <br>
-<div class="warning_text">This is a serious system and unauthorized access will result in a black jaguar mauling you!</div>
+<div class="med_text center">{{ message }}</div>
 
 </body>
 

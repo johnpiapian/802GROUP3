@@ -1,0 +1,41 @@
+{% load static %}
+<!-- load static loads the directory defined in settings.py -->
+<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduling App Login</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<!--
+File Name: homepage_0.html
+Page Name: Homepage
+User Type: 0 - Administrator
+Description: If the user is an Admin AND successfully logs in, this Admin landing page loads
+-->
+
+
+<body>
+<!-- PAGE TITLE -->
+<!-- Replace phone, address, hours with double curly brace once those models are created -->
+<h1 class="center">Logged in as: {{ name }}</h1>
+<h2 class="center">Your User Role is: {{ role.0 }}</h2>
+<h2 class="center">--phone--, --address--</h2>
+<h2 class="center">Office Hours: --hours--</h2>
+<br>
+<br><h3 class="center">Since you're logged in as "{{ role.0 }}" role, you get this menu:</h3>
+<ol class="center">
+    <li>Create New Course</li>
+    <li>Create New User</li>
+    <li>whatever else</li>
+</ol>
+<!-- probably don't need this message placeholder, but maybe we want to pass a message for
+     successfully logging in? -->
+{{ message }}
+
+</body>
+
+</html>
