@@ -25,24 +25,36 @@ class UserUnitTests(test_SetUp.dbSetup):
     def test_getUser_03(self):
         self.assertEqual(None, UserClass.UserClass.getUser(self, 1234))
 
-    def test_addUser(self):
-        self.assertEqual(True, UserClass.addUser(['A','John','Test']))
-        self.assertEqual(False, UserClass.addUser(['A', 'Colin', 'Test']))
-        self.assertEqual(False, UserClass.addUser(['P', 'Colin', '1234']))
-        self.assertEqual(False, UserClass.addUser( ['A', 'CoLiN', '1234']))
+    def test_addUser_00(self):
+        self.assertEqual(True, UserClass.UserClass.addUser(self, ['A','John','Test']))
+    def test_addUser_01(self):
+        self.assertEqual(False, UserClass.UserClass.addUser(self,['A', 'Colin', 'Test']))
+    def test_addUser_02(self):
+        self.assertEqual(False, UserClass.UserClass.addUser(self, ['P', 'Colin', '1234']))
+    def test_addUser_03(self):
+        self.assertEqual(False, UserClass.UserClass.addUser(self, ['A', 'CoLiN', '1234']))
 
-    def test_updateUser(self):
-        self.assertEqual(True, UserClass.updateUser(['A','Colin','newPassword']))
-        self.assertEqual(False, UserClass.updateUser(['A','Colin','newPassword']))
-        self.assertEqual(True, UserClass.updateUser(['T','Colin','newPassword']))
-        self.assertEqual(False, UserClass.updateUser( ['A','Colin','']))
-        self.assertEqual(False, UserClass.updateUser(['','Colin','newPassword']))
-        self.assertEqual(False, UserClass.updateUser(['A','asdjksdjkdsf','newPassword']))
+    def test_updateUser_00(self):
+        self.assertEqual(True, UserClass.UserClass.updateUser(self, ['A','Colin','newPassword']))
+    def test_updateUser_01(self):
+        self.assertEqual(False, UserClass.UserClass.updateUser(self, ['A','Colin','newPassword']))
+    def test_updateUser_02(self):
+        self.assertEqual(True, UserClass.UserClass.updateUser(self, ['T','Colin','newPassword']))
+    def test_updateUser_03(self):
+        self.assertEqual(False, UserClass.UserClass.updateUser(self, ['A','Colin','']))
+    def test_updateUser_04(self):
+        self.assertEqual(False, UserClass.UserClass.updateUser(self, ['','Colin','newPassword']))
+    def test_updateUser_05(self):
+        self.assertEqual(False, UserClass.UserClass.updateUser(self, ['A','asdjksdjkdsf','newPassword']))
 
 
-    def test_deleteUser(self):
-        self.assertContains(self.userList,self.Colin)
-        self.assertEqual(True, UserClass.deleteUser('colin'))
-        self.assertNotContains(self.userList, self.Colin)
-        self.assertEqual(False,UserClass.deleteUser('colin'))
-        self.assertEqual(False, UserClass.deleteUser(''))
+    def test_deleteUser_00(self):
+        self.assertEqual(True, self.userList.contains(self.Colin))
+    def test_deleteUser_01(self):
+        self.assertEqual(True, UserClass.UserClass.deleteUser(self,'colin'))
+    def test_deleteUser_02(self):
+        self.assertEqual(False, self.userList.contains(self.Colin))
+    def test_deleteUser_03(self):
+        self.assertEqual(False,UserClass.UserClass.deleteUser(self,'colin'))
+    def test_deleteUser_04(self):
+        self.assertEqual(False, UserClass.UserClass.deleteUser(self, ''))
