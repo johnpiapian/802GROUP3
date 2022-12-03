@@ -7,17 +7,36 @@ class AuthenticateTest(test_SetUp.dbSetup):
     def setUp(self):
         super().setUp()
 
-    def test_login(self):
-        for i in self.userList:
-            self.assertEqual(True, AuthenticateClass.Authenticate.login(self,[i.name,i.password]))
-            self.assertEqual(True, AuthenticateClass.Authenticate.login(self,[i.name.lower(),i.password]))
-            self.assertEqual(False, AuthenticateClass.Authenticate.login(self,[i.name,'']))
-            self.assertEqual(False, AuthenticateClass.Authenticate.login(self,['',i.password]))
-    def test_logout(self):
-        session = self.client.session
-        session['user'] = self.Colin
-        session.save()
-        self.assertEqual(True, AuthenticateClass.Authenticate.logout(self))
-        self.assertEqual(None, session['user'])
-        self.assertEqual(False,AuthenticateClass.Authenticate.logout(self))
 
+    def test_validateName_00(self):
+        user = AuthenticateClass.Authenticate('Colin','1234')
+        self.assertEqual(True, user.validateName())
+    def test_validateName_01(self):
+        user = AuthenticateClass.Authenticate('', '1234')
+        self.assertEqual(False, user.validateName())
+    def test_validateName_03(self):
+        user = AuthenticateClass.Authenticate('djsdfjfdsjkdfsjklsdfkjlfdsalkjsdflkjsdfalkjfljkdfslkjfs','1234')
+        self.assertEqual(False, user.validateName())
+    def test_validateName_04(self):
+        user = AuthenticateClass.Authenticate(1234,'1234')
+        self.assertEqual(False, user.validateName())
+
+    def test_validatePassword_00(self):
+        user = AuthenticateClass.Authenticate('Colin','1234')
+        self.assertEqual(True, user.validatePassword())
+    def test_validatePassword_01(self):
+        user = AuthenticateClass.Authenticate('Colin','')
+        self.assertEqual(False, user.validatePassword())
+    def test_validatePassword_02(self):
+        user = AuthenticateClass.Authenticate('Colin','ajkldsfjasdlkfjdslkfjsdalkfjsdaklfjadsfasdfds')
+        self.assertEqual(False, user.validatePassword())
+    def test_validatePassword_03(self):
+        user = AuthenticateClass.Authenticate('Colin',1234)
+        self.assertEqual(False, user.validatePassword())
+
+    def test_validateUser_00(self):
+        for i in self.userList:
+            user = AuthenticateClass.Authenticate(i.name,i.password)
+            self.assertEqual(True, user.validateUser())
+        user = AuthenticateClass.Authenticate('Test','NoPassword')
+        self.assertEqual(False, user)
