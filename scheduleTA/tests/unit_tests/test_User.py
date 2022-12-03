@@ -8,6 +8,7 @@ class UserUnitTests(test_SetUp.dbSetup):
         for i in self.userList:
             self.assertEqual(True, UserClass.UserClass.userExists(self, i.name), "lol you failed")
             self.assertEqual(True, UserClass.UserClass.userExists(self, i.name.upper()), "lol you failed")
+            self.assertEqual(True, UserClass.UserClass.userExists(self, i.name.lower()), "lol you failed")
     def test_userExists_01(self):
         self.assertEqual(False, UserClass.UserClass.userExists(self, ''))
     def test_userExists_02(self):

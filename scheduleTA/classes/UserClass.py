@@ -35,11 +35,14 @@ class UserClass:
             result_from_database = User.objects.get(name=userName)
         except:
             return None
-        return User.objects.get(name=userName)
+        return result_from_database
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
-        pass
+        if UserClass.userExists(self,userObj[1]):
+            return False
+        User.objects.create(role=userObj[0], name=userObj[1], password=userObj[2])
+        return True
 
     # given user object update the associated account
     # user object must contain name to find which record to update
@@ -48,4 +51,4 @@ class UserClass:
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-        pass
+        
