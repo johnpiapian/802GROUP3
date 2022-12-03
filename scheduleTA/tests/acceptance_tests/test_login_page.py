@@ -22,6 +22,6 @@ class Login(test_SetUp.dbSetup):
 
     def test_goodLoggin(self):
         for i in self.userList:
-            resp = self.mockUser.post("/", {"name": i.name, "password": i.password}, follow=True)
-            self.assertEqual(resp.url,'homepage_0/')
+            resp = self.mockUser.post("/", {"name": i.name, "password": i.password}, follow=True).redirect_chain
+            self.assertEqual(resp,[('/homepage_0/',302)])
 
