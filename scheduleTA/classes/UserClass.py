@@ -41,21 +41,34 @@ class UserClass:
     def addUser(self, userObj) -> bool:
         if UserClass.userExists(self,userObj[1]):
             return False
-        User.objects.create(role=userObj[0], name=userObj[1], password=userObj[2])
+        try:
+            User.objects.create(role=userObj[0], name=userObj[1], password=userObj[2])
+        except:
+            return False
         return True
 
     # given user object update the associated account
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
-        pass
+        user = UserClass.getUser(self,userObj[1])
+        if user !=None:
+            try:
+                user.roll = userObj[0]
+                user.password = userObj[2]
+                user.save()
+                return True
+            except:
+                return False
+        return False
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-        try:
-            removeUser = UserClass.getUser(self, userName)
-        except:
-            return False
+
+        removeUser = UserClass.getUser(self, userName)
         if removeUser!= None:
-            User.objects.filter(name=userName).delete()
+            try:
+                User.objects.filter(name=userName).delete()
+            except:
+                return False
             return True
         return False
