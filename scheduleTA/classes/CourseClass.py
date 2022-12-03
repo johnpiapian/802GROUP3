@@ -48,7 +48,7 @@ class CourseClass:
     # given course object update the associated course
     # course object must contain name to find which record to update
     def updateCourse(self, courseObj) -> bool:
-        course = CourseClass.getUser(self, courseObj[0])
+        course = CourseClass.getCourse(self, courseObj[0])
         if course != None:
             try:
                 course.name = courseObj[0]
