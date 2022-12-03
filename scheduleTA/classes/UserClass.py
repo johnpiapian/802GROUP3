@@ -1,7 +1,9 @@
 """
 This class deals with things related Account
 """
-
+from django.shortcuts import render, redirect
+from django.views import View
+from app.models import User, Course, Section
 
 class UserClass:
 
@@ -11,12 +13,29 @@ class UserClass:
     # given a name check if there exists an account
     # associated with the name in the database
     def userExists(self, userName) -> bool:
-        pass
+        result_from_database = None
+        # noinspection PyBroadException
+        try:
+            result_from_database = UserClass.getUser(self, userName)
+        except:
+            return False
+        if result_from_database is None:
+            return False
+        return True
+
+    def passwordCorrect(self, userObject, password):
+        return userObject.password == password
 
     # given a valid name return the associated account
     # note: should only return non-sensitive information
     def getUser(self, userName) -> object:
-        pass
+        result_from_database = None
+        # noinspection PyBroadException
+        try:
+            result_from_database = User.objects.get(name=userName)
+        except:
+            return None
+        return User.objects.get(name=userName)
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:

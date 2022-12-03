@@ -1,24 +1,29 @@
 from classes import UserClass
 from tests import test_SetUp
 class UserUnitTests(test_SetUp.dbSetup):
-
     def setUp(self):
         super().setUp()
 
-    def test_userExists(self):
+    def test_userExists_00(self):
         for i in self.userList:
-            self.assertEqual(True, UserClass.userExists(i.name))
-            self.assertEqual(True, UserClass.userExists(i.name.upper()))
-        self.assertEqual(False,UserClass.userExists(''))
-        self.assertEqual(False,UserClass.userExists('A'))
-        self.assertEqual(False,UserClass.userExists(1234))
-    def test_getUser(self):
+            self.assertEqual(True, UserClass.UserClass.userExists(self, i.name), "lol you failed")
+            self.assertEqual(True, UserClass.UserClass.userExists(self, i.name.upper()), "lol you failed")
+    def test_userExists_01(self):
+        self.assertEqual(False, UserClass.UserClass.userExists(self, ''))
+    def test_userExists_02(self):
+        self.assertEqual(False, UserClass.UserClass.userExists(self, 'A'))
+    def test_userExists_03(self):
+        self.assertEqual(False, UserClass.UserClass.userExists(self, 1234))
+    def test_getUser_00(self):
         for i in self.userList:
-            self.assertEqual(i,UserClass.getUser(i.name))
-            self.assertEqual(i,UserClass.getUser(i.name.upper()))
-        self.assertEqual(None, UserClass.getUser(''))
-        self.assertEqual(None,UserClass.getUser('A'))
-        self.assertEqual(None, UserClass.getUser(1234))
+            self.assertEqual(i, UserClass.UserClass.getUser(self, i.name))
+            self.assertEqual(i, UserClass.UserClass.getUser(self, i.name.upper()))
+    def test_getUser_01(self):
+        self.assertEqual(None, UserClass.UserClass.getUser(self, ''))
+    def test_getUser_02(self):
+        self.assertEqual(None, UserClass.UserClass.getUser(self, 'A'))
+    def test_getUser_03(self):
+        self.assertEqual(None, UserClass.UserClass.getUser(self, 1234))
 
     def test_addUser(self):
         self.assertEqual(True, UserClass.addUser(['A','John','Test']))
