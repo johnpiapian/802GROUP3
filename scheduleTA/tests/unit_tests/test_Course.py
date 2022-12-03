@@ -5,41 +5,60 @@ class CourseUnitTest(test_SetUp.dbSetup):
     def setUp(self):
         super().setUp()
 
-    def test_courseExists(self):
+    def test_courseExists_00(self):
         for i in self.courseList:
-            self.assertEqual(True,CourseClass.courseExists(i.name))
-        self.assertEqual(False, CourseClass.courseExists(''))
-        self.assertEqual(False, CourseClass.courseExists('4'))
-        self.assertEqual(False, CourseClass.courseExists(4))
+            self.assertEqual(True,CourseClass.CourseClass.courseExists(self,i.name))
+    def test_courseExists_01(self):
+        self.assertEqual(False, CourseClass.CourseClass.courseExists(self,''))
+    def test_courseExists_02(self):
+        self.assertEqual(False, CourseClass.CourseClass.courseExists(self,'4'))
+    def test_courseExists_03(self):
+        self.assertEqual(False, CourseClass.CourseClass.courseExists(self,4))
 
-    def test_getCourse(self):
+    def test_getCourse_00(self):
         for i in self.courseList:
-            self.assertEqual(i, CourseClass.getCourse(i.name))
-            self.assertEqual(i, CourseClass.getCourse(i.id.__str__))
-            self.assertEqual(i, CourseClass.getCourse(i.id))
-        self.assertEqual(None, CourseClass.getCourse(''))
-    def test_addCourse(self):
-        self.assertEqual(True,CourseClass.addCourse(['Art','4']))
-        self.assertEqual(False,CourseClass.addCourse(['Art','4']))
-        self.assertEqual(False,CourseClass.addCourse(['Art','2']))
-        self.assertEqual(True,CourseClass.addCourse(['Music',4]))
-        self.assertEqual(False,CourseClass.addCourse(['Gym','']))
+            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.name))
+            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.id.__str__))
+            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.id))
+    def test_getCourse_01(self):
+        self.assertEqual(None, CourseClass.CourseClass.getCourse(self,''))
+    def test_addCourse_00(self):
+        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,['Art','4']))
+    def test_addCourse_01(self):
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Art','4']))
+    def test_addCourse_02(self):
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Art','2']))
+    def test_addCourse_03(self):
+        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,['Music',4]))
+    def test_addCourse_04(self):
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Gym','']))
 
 
-    def test_updateCourse(self):
-        self.assertEqual(True, CourseClass.updateCourse(['Math','3']))
-        self.assertEqual(False, CourseClass.updateCourse(['Math', '3']))
-        self.assertEqual(False, CourseClass.updateCourse(['', '3']))
-        self.assertEqual(False, CourseClass.updateCourse(['JDJDJ', '3']))
-        self.assertEqual(False, CourseClass.updateCourse(['English', '']))
-        self.assertEqual(True, CourseClass.updateCourse(['English', 1]))
+    def test_updateCourse_00(self):
+        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,['Math','3']))
+    def test_updateCourse_01(self):
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['Math', '3']))
+    def test_updateCourse_02(self):
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['', '3']))
+    def test_updateCourse_03(self):
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['JDJDJ', '3']))
+    def test_updateCourse_04(self):
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['English', '']))
+    def test_updateCourse_05(self):
+        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,['English', 1]))
 
-    def test_deleteCourse(self):
-        self.assertContains(self.courseList, self.Math)
-        self.assertEqual(True,CourseClass.deleteCourse('Math'))
-        self.assertNotContais(self.courseList,self.Math)
-        self.assertEqual(False,CourseClass.deleteCourse('Math'))
-        self.assertEqual(False,CourseClass.deleteCourse(''))
-        self.assertEqual(False, CourseClass.deleteCourse('Gym'))
-        self.assertEqual(False, CourseClass.deleteCourse(3))
+    def test_deleteCourse_00(self):
+        self.assertEqual(True,self.courseList.contains(self.Math))
+    def test_deleteCourse_01(self):
+        self.assertEqual(True,CourseClass.CourseClass.deleteCourse(self,'Math'))
+    def test_deleteCourse_02(self):
+        self.assertEqual(False,self.courseList.contains(self.Math))
+    def test_deleteCourse_03(self):
+        self.assertEqual(False,CourseClass.CourseClass.deleteCourse(self,'Math'))
+    def test_deleteCourse_04(self):
+        self.assertEqual(False,CourseClass.CourseClass.deleteCourse(self,''))
+    def test_deleteCourse_05(self):
+        self.assertEqual(False, CourseClass.CourseClass.deleteCourse(self,'Gym'))
+    def test_deleteCourse_06(self):
+        self.assertEqual(False, CourseClass.CourseClass.deleteCourse(self,3))
 
