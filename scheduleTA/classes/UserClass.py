@@ -26,6 +26,15 @@ class UserClass:
     def passwordCorrect(self, userObject, password):
         return userObject.password == password
 
+    def getRole(self, userName):
+        result_from_database = None
+        # noinspection PyBroadException
+        try:
+            result_from_database = User.objects.filter(name=userName).values_list('role',flat=True)[0]
+        except:
+            return None
+        return result_from_database
+
     # given a valid name return the associated account
     # note: should only return non-sensitive information
     def getUser(self, userName) -> object:
@@ -39,10 +48,11 @@ class UserClass:
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
-        if UserClass.userExists(self,userObj[1]):
+        if UserClass.userExists(self,userObj.name):
             return False
+        # noinspection PyBroadException
         try:
-            User.objects.create(role=userObj[0], name=userObj[1], password=userObj[2])
+            userObj.save()
         except:
             return False
         return True

@@ -28,9 +28,9 @@ class CreateUser(View):
     def get(self, request):
         ## retrieve the logged in user's role from session
         logged_in_user = request.session["name"]
-        role = User.objects.filter(name=logged_in_user).values_list('role',flat=True)[0]
+        # role = User.objects.filter(name=logged_in_user).values_list('role',flat=True)[0]
 
-        if role == 'A': # only an Admin with role 'A' can access the add users page
+        if UserClass.UserClass.getRole(self, logged_in_user) == 'A': # only an Admin with role 'A' can access the add users page
             return render(request, "create_user.html", {})
         else: # else = User's role is NOT Administrator, not authorized
             return render(request, '403.html', {})
@@ -41,14 +41,13 @@ class CreateUser(View):
         input_pw2 = request.POST.get('input_pw2')
         input_role = request.POST.get('input_role')
 
-        if UserClass.UserClass.userExists(self, input_name):
-            return render(request, 'create_user.html', {"message": "ERROR: Username already exists in database, try again."})
+        if input_pw1 != input_pw2:
+            return render(request, 'create_user.html',
+                          {"message": "ERROR: Passwords do NOT match, try again."})
         else:
-            if input_pw1 != input_pw2:
-                return render(request, 'create_user.html',
-                              {"message": "ERROR: Passwords do NOT match, try again."})
-            else:
-                ## create new "User" object, this object is defined in models.py
-                new_user = User(name=input_name, password=input_pw1, role=input_role)
-                new_user.save() ## save new_user object into the database
+            new_user = User(name=input_name, password=input_pw1, role=input_role)
+            if UserClass.UserClass.addUser(self, new_user):
                 return render(request, 'create_user.html', {"message": "SUCCESS! User added successfully."})
+            else:
+                return render(request, 'create_user.html', {"message": "ERROR: Username already exists in database, try again."})
+
