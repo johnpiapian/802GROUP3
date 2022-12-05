@@ -39,10 +39,10 @@ class UserClass:
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
-        if UserClass.userExists(self,userObj[1]):
+        if UserClass.userExists(self,userObj):
             return False
         try:
-            User.objects.create(role=userObj[0], name=userObj[1], password=userObj[2])
+            userObj.save()
         except:
             return False
         return True
@@ -50,12 +50,10 @@ class UserClass:
     # given user object update the associated account
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
-        user = UserClass.getUser(self,userObj[1])
-        if user !=None:
+
+        if UserClass.userExists(self,userObj.name):
             try:
-                user.roll = userObj[0]
-                user.password = userObj[2]
-                user.save()
+                userObj.save()
                 return True
             except:
                 return False

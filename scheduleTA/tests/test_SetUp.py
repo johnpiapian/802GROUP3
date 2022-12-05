@@ -14,6 +14,10 @@ class dbSetup(TestCase):
         self.Humraj = User.objects.create(role='T', name='Humraj', password='pAsSwOrD')
         self.Nicholas = User.objects.create(role='P', name='Nicholas', password='a!2/}')
         self.Sut = User.objects.create(role='P', name='Sut', password='abcd')
+        self.Lisa = User(role='A', name='Lisa', password='test')
+        self.ColinPchange = User(role='A', name = 'Colin', password='Test')
+        self.ColinRchange = User(role='P', name='Colin', password='1234')
+
 
         self.userList = User.objects.all()
 
@@ -22,6 +26,7 @@ class dbSetup(TestCase):
         self.eng = Course.objects.create(name='English',credit=4)
 
         self.courseList = Course.objects.all()
+
 
 
 
