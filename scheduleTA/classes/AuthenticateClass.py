@@ -10,10 +10,10 @@ class Authenticate:
         self.password = password
 
     def validateName(self) -> bool:
-        return 0 < len(self.name) < 21
+        return 0 < len(str(self.name)) < 21
 
     def validatePassword(self) -> bool:
-        return 0 < len(self.password) < 21
+        return 0 < len(str(self.password)) < 21
 
     # return true if successful or false if not
     # use the model class to validate if user is valid

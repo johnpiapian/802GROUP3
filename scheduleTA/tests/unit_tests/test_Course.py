@@ -23,29 +23,33 @@ class CourseUnitTest(test_SetUp.dbSetup):
     def test_getCourse_01(self):
         self.assertEqual(None, CourseClass.CourseClass.getCourse(self,''))
     def test_addCourse_00(self):
-        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,['Art','4']))
+        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,self.art))
     def test_addCourse_01(self):
-        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Art','4']))
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,self.Math))
     def test_addCourse_02(self):
-        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Art','2']))
+        self.Math.credit = 2
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,self.Math))
     def test_addCourse_03(self):
-        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,['Music',4]))
+        self.assertEqual(True,CourseClass.CourseClass.addCourse(self,self.music))
     def test_addCourse_04(self):
-        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,['Gym','']))
+        self.Gym.credit = ''
+        self.assertEqual(False,CourseClass.CourseClass.addCourse(self,self.Gym))
 
 
     def test_updateCourse_00(self):
-        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,['Math','3']))
+        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,self.MathChange))
     def test_updateCourse_01(self):
-        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['Math', '3']))
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.Sci))
     def test_updateCourse_02(self):
-        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['', '3']))
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.engChange))
     def test_updateCourse_03(self):
-        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['JDJDJ', '3']))
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.Gym))
     def test_updateCourse_04(self):
-        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,['English', '']))
+        self.eng.credit = ''
+        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.eng))
     def test_updateCourse_05(self):
-        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,['English', 1]))
+        self.eng.credit=1
+        self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,self.eng))
 
     def test_deleteCourse_00(self):
         self.assertEqual(True,self.courseList.contains(self.Math))

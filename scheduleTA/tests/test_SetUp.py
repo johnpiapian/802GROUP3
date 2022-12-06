@@ -8,20 +8,32 @@ class dbSetup(TestCase):
     userList = None
     def setUp(self):
         self.mockUser = Client()
-        self.Admin = User.objects.create(role='A', name='Admin1!', password='Password')
-        self.Colin = User.objects.create(role='A', name='Colin', password='1234')
-        self.George = User.objects.create(role='T', name='George', password="1234")
-        self.Humraj = User.objects.create(role='T', name='Humraj', password='pAsSwOrD')
-        self.Nicholas = User.objects.create(role='P', name='Nicholas', password='a!2/}')
-        self.Sut = User.objects.create(role='P', name='Sut', password='abcd')
+        self.Admin = User.objects.create(role='A', name='ADMIN1!', password='Password')
+        self.Colin = User.objects.create(role='A', name='COLIN', password='1234')
+        self.George = User.objects.create(role='T', name='GEORGE', password="1234")
+        self.Humraj = User.objects.create(role='T', name='HUMRAJ', password='pAsSwOrD')
+        self.Nicholas = User.objects.create(role='P', name='NICHOLAS', password='a!2/}')
+        self.Sut = User.objects.create(role='P', name='SUT', password='abcd')
+        self.Lisa = User(role='A', name='LISA', password='test')
+        self.ColinPchange = User(role='A', name = 'COLIN', password='Test')
+        self.ColinRchange = User(role='P', name='COLIN', password='1234')
+
 
         self.userList = User.objects.all()
 
-        self.Math = Course.objects.create(name='Math',credit=4)
-        self.Sci = Course.objects.create(name='Science',credit=3)
-        self.eng = Course.objects.create(name='English',credit=4)
+        self.Math = Course.objects.create(name='MATH',credit=4)
+        self.Sci = Course.objects.create(name='SCIENCE',credit=3)
+        self.eng = Course.objects.create(name='ENGLISH',credit=4)
+
+        self.MathChange = Course(name='MATH',credit=2)
+        self.engChange = Course(name='', credit=4)
+
+        self.art = Course(name="ART",credit=4)
+        self.music= Course(name='MUSIC',credit=2)
+        self.Gym = Course(name='GYM',credit=1)
 
         self.courseList = Course.objects.all()
+
 
 
 

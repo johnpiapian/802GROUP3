@@ -16,7 +16,7 @@ class UserClass:
         result_from_database = None
         # noinspection PyBroadException
         try:
-            result_from_database = UserClass.getUser(self, userName)
+            result_from_database = UserClass.getUser(self, userName.upper())
         except:
             return False
         if result_from_database is None:
@@ -24,7 +24,10 @@ class UserClass:
         return True
 
     def passwordCorrect(self, userObject, password):
-        return userObject.password == password
+        try:
+            return userObject.password == str(password)
+        except:
+            return False
 
     def getRole(self, userName):
         result_from_database = None
@@ -41,7 +44,7 @@ class UserClass:
         result_from_database = None
         # noinspection PyBroadException
         try:
-            result_from_database = User.objects.get(name=userName)
+            result_from_database = User.objects.get(name=userName.upper())
         except:
             return None
         return result_from_database
@@ -60,12 +63,10 @@ class UserClass:
     # given user object update the associated account
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
-        user = UserClass.getUser(self,userObj[1])
-        if user !=None:
+
+        if UserClass.userExists(self,userObj.name) and len(userObj.password)>1 and len(userObj.role) == 1:
             try:
-                user.roll = userObj[0]
-                user.password = userObj[2]
-                user.save()
+                userObj.save()
                 return True
             except:
                 return False
@@ -73,11 +74,9 @@ class UserClass:
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-
-        removeUser = UserClass.getUser(self, userName)
-        if removeUser!= None:
+        if UserClass.getUser(self, userName)!= None:
             try:
-                User.objects.filter(name=userName).delete()
+                User.objects.filter(name=userName.upper()).delete()
             except:
                 return False
             return True
