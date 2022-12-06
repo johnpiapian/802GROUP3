@@ -13,7 +13,7 @@
 <!--
 File Name: homepage_0.html
 Page Name: Homepage
-User Type: 0 - Administrator
+User Type: A - Administrator
 Description: If the user is an Admin AND successfully logs in, this Admin landing page loads
 -->
 
@@ -28,7 +28,7 @@ Description: If the user is an Admin AND successfully logs in, this Admin landin
 <br>
 <br><h3 class="center">Since you're logged in as "{{ role.0 }}" role, you get this menu:</h3>
 <ol class="center">
-    <li>Create New Course</li>
+    <li><a href="{% url 'create_user' %}">Create User</a></li>
     <li>Create New User</li>
     <li>whatever else</li>
 </ol>
