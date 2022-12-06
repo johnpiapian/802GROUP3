@@ -29,6 +29,15 @@ class UserClass:
         except:
             return False
 
+    def getRole(self, userName):
+        result_from_database = None
+        # noinspection PyBroadException
+        try:
+            result_from_database = User.objects.filter(name=userName).values_list('role',flat=True)[0]
+        except:
+            return None
+        return result_from_database
+
     # given a valid name return the associated account
     # note: should only return non-sensitive information
     def getUser(self, userName) -> object:
@@ -44,6 +53,7 @@ class UserClass:
     def addUser(self, userObj) -> bool:
         if UserClass.userExists(self,userObj.name):
             return False
+        # noinspection PyBroadException
         try:
             userObj.save()
         except:
