@@ -74,9 +74,7 @@ class UserClass:
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-
-        removeUser = UserClass.getUser(self, userName)
-        if removeUser!= None:
+        if UserClass.getUser(self, userName)!= None:
             try:
                 User.objects.filter(name=userName.upper()).delete()
             except:

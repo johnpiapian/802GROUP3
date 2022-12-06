@@ -37,10 +37,10 @@ class CourseClass:
 
     # given course object store it in the database
     def addCourse(self, courseObj) -> bool:
-        if CourseClass.courseExists(self, courseObj[1]):
+        if CourseClass.courseExists(self, courseObj.name):
             return False
         try:
-            User.objects.create(name=courseObj[0], credit=courseObj[1])
+            courseObj.save()
         except:
             return False
         return True
@@ -48,12 +48,10 @@ class CourseClass:
     # given course object update the associated course
     # course object must contain name to find which record to update
     def updateCourse(self, courseObj) -> bool:
-        course = CourseClass.getCourse(self, courseObj[0])
+        course = CourseClass.getCourse(self, courseObj.name)
         if course != None:
             try:
-                course.name = courseObj[0]
-                course.credit = courseObj[1]
-                course.save()
+                courseObj.save()
                 return True
             except:
                 return False

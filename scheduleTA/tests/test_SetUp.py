@@ -25,6 +25,13 @@ class dbSetup(TestCase):
         self.Sci = Course.objects.create(name='SCIENCE',credit=3)
         self.eng = Course.objects.create(name='ENGLISH',credit=4)
 
+        self.MathChange = Course(name='MATH',credit=2)
+        self.engChange = Course(name='', credit=4)
+
+        self.art = Course(name="ART",credit=4)
+        self.music= Course(name='MUSIC',credit=2)
+        self.Gym = Course(name='GYM',credit=1)
+
         self.courseList = Course.objects.all()
 
 
