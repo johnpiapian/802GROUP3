@@ -21,11 +21,10 @@ class UserClass:
             return False
 
     def authenticate(self, userName, userPassword):
-        # for insensitivity
-        userName = userName.upper()
-
         # noinspection PyBroadException
         try:
+            # for insensitivity
+            userName = userName.upper()
             if not UserClass.userExists(self, userName):
                 return False
             return User.objects.get(name=userName, password=userPassword).name == userName
@@ -33,11 +32,10 @@ class UserClass:
             return False
 
     def getRole(self, userName):
-        # for insensitivity
-        userName = userName.upper()
-
         # noinspection PyBroadException
         try:
+            # for insensitivity
+            userName = userName.upper()
             return User.objects.filter(name=userName).values_list('role', flat=True)[0]
         except:
             return None
@@ -51,22 +49,20 @@ class UserClass:
     # given a valid name return the associated account
     # note: should only return non-sensitive information
     def getUser(self, userName) -> object:
-        # for insensitivity
-        userName = userName.upper()
-
         # noinspection PyBroadException
         try:
+            # for insensitivity
+            userName = userName.upper()
             return User.objects.get(name=userName)
         except:
             return None
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
-        # for insensitivity
-        userObj.name = userObj.name.upper()
-
         # noinspection PyBroadException
         try:
+            # for insensitivity
+            userObj.name = userObj.name.upper()
             if UserClass.userExists(self, userObj.name):
                 return False
             userObj.save()
@@ -88,9 +84,9 @@ class UserClass:
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-        # for insensitivity
-        userName = userName.upper()
         try:
+            # for insensitivity
+            userName = userName.upper()
             if UserClass.userExists(userName):
                 User.objects.filter(name=userName.upper()).delete()
                 return True
