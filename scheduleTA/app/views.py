@@ -186,3 +186,25 @@ class DeleteCourse(View):
                 return redirect("manage_course")
         return render(request, '403.html', {})
 
+
+class CreateCourse(View):
+    def get(self, request):
+        if isLoggedIn(request.session):
+            return render(request, 'create_course.html', {})
+        return render(request, '403.html', {})
+
+    def post(self, request):
+        if isLoggedIn(request.session):
+            input_name = request.POST.get('input_name')
+            input_credit = request.POST.get('input_credit')
+
+            if len(input_name) < 3 or len(input_name) > 30 :
+                return render(request, 'create_course.html', {"message": "ERROR: invalid name length, try gain."})
+            elif int(input_credit) < 1 or len(input_credit) > 10:
+                return render(request, 'create_course.html', {"message": "ERROR: invalid credit, try gain."})
+            else:
+                toAdd = Course(name=input_name, credit=input_credit)
+                if CourseClass.CourseClass.addCourse(self, toAdd):
+                    return render(request, 'create_course.html', {"message": "SUCCESS! Course added successfully."})
+        return render(request, '403.html', {})
+

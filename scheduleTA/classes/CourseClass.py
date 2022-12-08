@@ -26,15 +26,7 @@ class CourseClass:
         except:
             return None
 
-    # given a valid name return the associated course
-    # note: could also make it %like% instead of =equal=
-    def getCourse(self, courseName) -> object:
-        try:
-            result_from_database = Course.objects.get(name=courseName)
-        except:
-            return None
-        return result_from_database
-
+    # given a valid courseID return the associated course
     def getCourse(self, courseID) -> object:
         try:
             result_from_database = Course.objects.get(id=courseID)
@@ -44,13 +36,13 @@ class CourseClass:
 
     # given course object store it in the database
     def addCourse(self, courseObj) -> bool:
-        if CourseClass.courseExists(self, courseObj.name):
-            return False
         try:
+            if CourseClass.courseExists(self, courseObj.name):
+                return False
             courseObj.save()
+            return True
         except:
             return False
-        return True
 
     # given course object update the associated course
     # course object must contain name to find which record to update

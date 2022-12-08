@@ -20,7 +20,7 @@
                     <th scope="row">{{ course.id }}</th>
                     <td>{{ course.name }}</td>
                     <td>{{ course.credit }}</td>
-                    <td><a href="{% url 'delete_course' courseID=course.id %}" class="link-primary">Delete</a></td>
+                    <td><a href="{% url 'delete_course' courseID=course.id %}" class="link-danger">Delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
