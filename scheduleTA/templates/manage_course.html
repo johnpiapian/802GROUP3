@@ -1,0 +1,29 @@
+{% extends "Layout/base-loggedIn.html" %}
+
+{% block content %}
+    <div class="table-container">
+        {% if message %}
+            <div class="alert alert-secondary" role="alert">{{ message }}</div>
+        {% endif %}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Credit(s)</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for course in courses %}
+                <tr>
+                    <th scope="row">{{ course.id }}</th>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.credit }}</td>
+                    <td><a href="{% url 'delete_course' id=course.id %}" class="link-primary">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

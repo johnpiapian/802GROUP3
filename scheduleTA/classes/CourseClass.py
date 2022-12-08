@@ -3,6 +3,7 @@ This class deals with things related Course
 """
 from app.models import User, Course, Section
 
+
 class CourseClass:
 
     def __int__(self):
@@ -18,6 +19,12 @@ class CourseClass:
         if result_from_database is None:
             return False
         return True
+
+    def getAllCourses(self):
+        try:
+            return Course.objects.all()
+        except:
+            return None
 
     # given a valid name return the associated course
     # note: could also make it %like% instead of =equal=
@@ -57,23 +64,9 @@ class CourseClass:
                 return False
         return False
 
-    # given a valid name delete the associated course
-    def deleteCourse(self, courseName) -> bool:
-        removeCourse = CourseClass.getCourse(self, courseName)
-        if removeCourse != None:
-            try:
-                User.objects.filter(name=courseName).delete()
-            except:
-                return False
-            return True
-        return False
-
     def deleteCourse(self, courseID) -> bool:
-        removeCourse = CourseClass.getCourse(self, courseID)
-        if removeCourse != None:
-            try:
-                User.objects.filter(id=courseID).delete()
-            except:
-                return False
+        try:
+            Course.objects.filter(id=courseID).delete()
             return True
-        return False
+        except:
+            return False

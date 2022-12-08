@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from classes import UserClass
+from classes import UserClass, CourseClass
 from .models import User, Course, Section
 
 
@@ -169,3 +169,20 @@ class Logout(View):
             del request.session["name"]
             return redirect("home")
         return render(request, 'base-error.html', {"title": "Unexpected error!"})
+
+
+# Course
+class ManageCourse(View):
+    def get(self, request):
+        if isLoggedIn(request.session):
+            return render(request, 'manage_course.html', {"courses": CourseClass.CourseClass.getAllCourses(self)})
+        return render(request, '403.html', {})
+
+
+class DeleteCourse(View):
+    def get(self, request, id):
+        if isLoggedIn(request.session):
+            if CourseClass.CourseClass.deleteCourse(self, id):
+                return redirect("manage_course")
+        return render(request, '403.html', {})
+
