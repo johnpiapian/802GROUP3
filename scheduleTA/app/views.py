@@ -91,6 +91,34 @@ class ViewUserSingle(View):
             return render(request, 'view_user_single.html', {"user": UserClass.UserClass.getUser(self, name)})
         return render(request, '403.html', {})
 
+class UpdateUser(View):
+    def post(self, request):
+        # handle unauthorized access by showing them 403 error
+        if isAdminLoggedIn(request.session):
+            input_id = request.POST.get('input_id')
+            input_name = request.POST.get('input_name')
+            input_pw1 = request.POST.get('input_pw1')
+            input_pw2 = request.POST.get('input_pw2')
+            input_role = request.POST.get('input_role')
+            roles = ['A', 'P', 'T']
+
+            if len(input_pw1) > 0 and input_pw1 != input_pw2:
+                return render(request, "view_user_single.html/" + input_name, {"message": "ERROR: Passwords do NOT match, try again."})
+
+        return render(request, '403.html', {})
+
+class DeleteUser(View):
+    def post(self, request):
+        # handle unauthorized access
+        if isAdminLoggedIn(request.session):
+            input_id = request.POST.get('input_id')
+            input_name = request.POST.get('input_name')
+            if UserClass.UserClass.getUser(self, input_name).id == int(input_id):
+                UserClass.UserClass.deleteUser(self, input_name)
+                return redirect("view_user")
+
+        return render(request, '403.html', {})
+
 
 class Logout(View):
     def get(self, request):

@@ -7,22 +7,26 @@
     <div class="row">
         <div class="form-container container-sm">
 
-            <form action="{% url 'create_user' %}" method="post">
+            <form action="{% url 'update_user' %}" method="post">
                 {% if message %}
                 <div class="alert alert-secondary" role="alert">{{ message }}</div>
                 {% endif %}
                 {% csrf_token %}
-                <input type="hidden" value="">
+                <input type="hidden" name="input_id" value="{{ user.id }}">
                 <div class="mb-3">
-                    <label for="input_name" class="form-label">Name</label>
+                    <label for="input_name" class="form-label">Name *</label>
                     <input type="text" class="form-control" id="input_name" name="input_name" value="{{ user.name }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="input_pw1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="input_pw1" name="input_pw1" value="{{ user.password }}" required>
+                    <input type="password" class="form-control" id="input_pw1" name="input_pw1" placeholder="leave it blank to keep the old password">
                 </div>
                 <div class="mb-3">
-                    <label for="input_role" class="form-label">Role</label>
+                    <label for="input_pw2" class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="input_pw2" name="input_pw2">
+                </div>
+                <div class="mb-3">
+                    <label for="input_role" class="form-label">Role *</label>
                     <select class="form-select" name="input_role">
                         <option disabled selected value> -- select an option -- </option>
                         <option value="A">Administrator(A)</option>
@@ -31,7 +35,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" formaction="{% url 'delete_user' %}" class="btn btn-danger">Delete</button>
             </form>
         </div>
     </div>

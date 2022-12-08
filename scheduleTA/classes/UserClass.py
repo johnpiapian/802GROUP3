@@ -85,10 +85,8 @@ class UserClass:
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
         try:
-            # for insensitivity
-            userName = userName.upper()
-            if UserClass.userExists(userName):
-                User.objects.filter(name=userName.upper()).delete()
+            if UserClass.userExists(self, userName):
+                User.objects.filter(name=userName).delete()
                 return True
             else:
                 return False
