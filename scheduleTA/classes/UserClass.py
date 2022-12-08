@@ -20,10 +20,15 @@ class UserClass:
         except:
             return False
 
-    # TODO: need to revisit
-    def passwordCorrect(self, userObject, password):
+    def authenticate(self, userName, userPassword):
+        # for insensitivity
+        userName = userName.upper()
+
+        # noinspection PyBroadException
         try:
-            return userObject.password == str(password)
+            if not UserClass.userExists(self, userName):
+                return False
+            return User.objects.get(name=userName, password=userPassword).name == userName
         except:
             return False
 
