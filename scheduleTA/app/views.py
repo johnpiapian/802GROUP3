@@ -84,6 +84,14 @@ class ViewUser(View):
         return render(request, '403.html', {})
 
 
+class ViewUserSingle(View):
+    def get(self, request, name):
+        # handle unauthorized access by showing them 403 error
+        if isAdminLoggedIn(request.session):
+            return render(request, 'view_user_single.html', {"user": UserClass.UserClass.getUser(self, name)})
+        return render(request, '403.html', {})
+
+
 class Logout(View):
     def get(self, request):
         if isLoggedIn(request.session):

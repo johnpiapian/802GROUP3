@@ -17,7 +17,7 @@
                     <th scope="row">{{ user.id }}</th>
                     <td>{{ user.name }}</td>
                     <td>{{ user.role }}</td>
-                    <td><a href="{% url 'homepage_0' %}{{ user.name }}" class="link-primary">Open</a></td>
+                    <td><a href="{% url 'view_user_single' %}{{ user.name }}" class="link-primary">Open</a></td>
                 </tr>
             {% endfor %}
             </tbody>

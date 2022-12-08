@@ -1,0 +1,37 @@
+{% extends "Layout/base-loggedIn.html" %}
+
+{% block content %}
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0">Manage Account</h3>
+    </div>
+    <div class="row">
+        <div class="form-container container-sm">
+            {% if message %}
+                <div class="alert alert-secondary" role="alert">{{ message }}</div>
+            {% endif %}
+            <form action="{% url 'create_user' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="">
+                <div class="mb-3">
+                    <label for="input_name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="input_name" name="input_name" value="{{ user.name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input_pw1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="input_pw1" name="input_pw1" value="{{ user.password }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input_role" class="form-label">Role</label>
+                    <select class="form-select" name="input_role">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="A">Administrator(A)</option>
+                        <option value="P">Professor(P)</option>
+                        <option value="T">TA(T)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
