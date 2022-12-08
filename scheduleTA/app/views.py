@@ -15,7 +15,7 @@ def isLoggedIn(session):
 def isAdminLoggedIn(session):
     if isLoggedIn(session):
         # check if the logged-in user has admin role
-        if UserClass.UserClass.getRole(session['name']) == 'A':
+        if UserClass.UserClass.getRole(None, session['name']) == 'A':
             return True
     return False
 
@@ -69,3 +69,8 @@ class CreateUser(View):
                 else:
                     return render(request, 'create_user.html', {"message": "ERROR: Username already exists in database, try again."})
         return render(request, '403.html', {})
+
+
+class ViewUser(View):
+    def get(self, request):
+        return render(request, 'view_user.html', {"users": UserClass.UserClass.getAllUsers(self)})

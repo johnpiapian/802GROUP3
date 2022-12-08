@@ -1,59 +1,38 @@
-{% load static %}
-<!-- load static loads the directory defined in settings.py -->
-<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
-<!DOCTYPE html>
+{% extends "Layout/base-loggedIn.html" %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create New User</title>
-    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-    <div class="left-side">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#notification">Notifications</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#staff">Staff</a></li>
-            <li><a href="/edit_profile">Edit profile</a></li>
-            <li><a href="#create_new_class">Create New Class</a></li>
-            <li><a class="active"  href="/create_new_user">Create New User</a></li>
-            <li><a href="/create_new_course">Create New Course</a></li>
-            <li><a href="/">Log Out</a></li>
-        </ul>
+{% block content %}
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0">Create Account</h3>
     </div>
-    <div class="main-content">
-        <h1 class="center">Create New User</h1>
-        <form action="{% url 'create_user' %}" method="post">
-            {% csrf_token %}
-            <table class="center">
-                <!-- 'name=' below must match models.py variable names -->
-                <!-- check to see what Sut called them and fix name/password reference names -->
-                <tr><td class="med_text td-label">User Name: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="input_name"></td></tr>
-                <tr><td class="med_text td-label">Password: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="input_pw1"></td></tr>
-                <tr><td class="med_text td-label">Confirm Password: </td></tr>
-                <tr><td><input type="text" class = "input-field" name="input_pw2"></td></tr>
-                <tr><td class="med_text td-label">Role:</td></tr>
-                <tr><td>
-                    <select class="input-field" name="input_role">
-                        <option value="A">Administrator</option>
-                        <option value="P">Professor</option>
-                        <option value="T">Teaching Assistant (TA)</option>
+    <div class="row">
+        <div class="form-container container-sm">
+            {% if message %}
+                <div class="alert alert-secondary" role="alert">{{ message }}</div>
+            {% endif %}
+            <form action="{% url 'create_user' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="input_name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="input_name" name="input_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input_pw1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="input_pw1" name="input_pw1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input_pw2" class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="input_pw2" name="input_pw2" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input_role" class="form-label">Role</label>
+                    <select class="form-select" name="input_role">
+                        <option value="A">Administrator(A)</option>
+                        <option value="P">Professor(P)</option>
+                        <option value="T">TA(T)</option>
                     </select>
-                </td></tr>
-                <tr><td><input class="center edit-info-send-btn" type="submit" value="Send"></td></tr>
-            </table>
-        </form>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
     </div>
-
-<!-- If there is an error adding the user -->
-<br>
-<div class="med_text center">{{ message }}</div>
-
-</body>
-
-</html>
+{% endblock content %}

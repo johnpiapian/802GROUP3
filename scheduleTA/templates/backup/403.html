@@ -1,0 +1,21 @@
+{% load static %}
+<!-- load static loads the directory defined in settings.py -->
+<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403 Error - Unauthorized</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1 class="center">403 Error - Unauthorized</h1>
+    <div class="center">Click <a href="{% url 'homepage_0' %}">here</a> to go back!</div>
+    <br/>
+    {#    If there is login error message views.py will#}
+    {#    pass the message from views.py in a var named message#}
+    {% if message %}
+    <div class="big_text center">{{ message }}</div>
+    {% endif %}
+</body>
+</html>
