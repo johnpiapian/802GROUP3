@@ -73,4 +73,7 @@ class CreateUser(View):
 
 class ViewUser(View):
     def get(self, request):
-        return render(request, 'view_user.html', {"users": UserClass.UserClass.getAllUsers(self)})
+        # handle unauthorized access by showing them 403 error
+        if isAdminLoggedIn(request.session):
+            return render(request, 'view_user.html', {"users": UserClass.UserClass.getAllUsers(self)})
+        return render(request, '403.html', {})
