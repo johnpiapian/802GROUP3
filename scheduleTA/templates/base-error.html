@@ -1,15 +1,8 @@
-{% load static %}
-<!-- load static loads the directory defined in settings.py -->
-<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>403 Error - Unauthorized</title>
-    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <h1 class="center">{{ title }}</h1>
-    <h3 class="center">{{ message }}</h3>
-</body>
-</html>
+{% extends "Layout/base.html" %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>{{ title }}</h1>
+        <h3>{{ message }}</h3>
+    </div>
+{% endblock content %}
