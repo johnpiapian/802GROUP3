@@ -180,9 +180,9 @@ class ManageCourse(View):
 
 
 class DeleteCourse(View):
-    def get(self, request, id):
+    def get(self, request, courseID):
         if isLoggedIn(request.session):
-            if CourseClass.CourseClass.deleteCourse(self, id):
+            if CourseClass.CourseClass.deleteCourse(self, courseID):
                 return redirect("manage_course")
         return render(request, '403.html', {})
 
