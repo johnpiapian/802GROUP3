@@ -23,6 +23,8 @@ def isAdminLoggedIn(session):
 # Create your views here.
 class Home(View):
     def get(self, request):
+        if isLoggedIn(request.session):
+            return redirect("homepage_0")
         return render(request, 'home.html', {})
 
     def post(self, request):
@@ -51,7 +53,9 @@ class CreateUser(View):
         # handle unauthorized access by showing them 403 error
         if isAdminLoggedIn(request.session):
             return render(request, "create_user.html", {})
-        return render(request, '403.html', {})
+        elif isLoggedIn(request.session):
+            return render(request, '403.html', {})
+        return redirect("home")
 
     def post(self, request):
         # handle unauthorized access by showing them 403 error
@@ -67,7 +71,8 @@ class CreateUser(View):
                 if UserClass.UserClass.addUser(self, new_user):
                     return render(request, 'create_user.html', {"message": "SUCCESS! User added successfully."})
                 else:
-                    return render(request, 'create_user.html', {"message": "ERROR: Username already exists in database, try again."})
+                    return render(request, 'create_user.html',
+                                  {"message": "ERROR: Username already exists in database, try again."})
         return render(request, '403.html', {})
 
 
@@ -77,3 +82,11 @@ class ViewUser(View):
         if isAdminLoggedIn(request.session):
             return render(request, 'view_user.html', {"users": UserClass.UserClass.getAllUsers(self)})
         return render(request, '403.html', {})
+
+
+class Logout(View):
+    def get(self, request):
+        if isLoggedIn(request.session):
+            del request.session["name"]
+            return redirect("home")
+        return render(request, 'base-error.html', {"title": "Unexpected error!"})
