@@ -6,10 +6,11 @@
     </div>
     <div class="row">
         <div class="form-container container-sm">
-            {% if message %}
-                <div class="alert alert-secondary" role="alert">{{ message }}</div>
-            {% endif %}
+
             <form action="{% url 'create_user' %}" method="post">
+                {% if message %}
+                <div class="alert alert-secondary" role="alert">{{ message }}</div>
+                {% endif %}
                 {% csrf_token %}
                 <input type="hidden" value="">
                 <div class="mb-3">
