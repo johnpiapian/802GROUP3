@@ -57,6 +57,14 @@ class UserClass:
         except:
             return None
 
+    # get user by id
+    def getUserByID(self, userID):
+        # noinspection PyBroadException
+        try:
+            return User.objects.get(id=userID)
+        except:
+            return None
+
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
         # noinspection PyBroadException
@@ -74,13 +82,18 @@ class UserClass:
     # given user object update the associated account
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
-        if UserClass.userExists(self, userObj.name) and len(userObj.password) > 1 and len(userObj.role) == 1:
-            try:
-                userObj.save()
-                return True
-            except:
-                return False
-        return False
+        try:
+            tempUser = User.objects.get(id=userObj.id)
+            tempUser.name = userObj.name.upper()
+            tempUser.role = userObj.role
+
+            if len(userObj.password) > 0:
+                tempUser.password = userObj.password
+
+            tempUser.save()
+            return True
+        except:
+            return False
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
