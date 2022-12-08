@@ -85,10 +85,12 @@ class UserClass:
         try:
             tempUser = User.objects.get(id=userObj.id)
             tempUser.name = userObj.name.upper()
-            tempUser.role = userObj.role
 
             if len(userObj.password) > 0:
                 tempUser.password = userObj.password
+
+            if userObj.role is not None:
+                tempUser.role = userObj.role
 
             tempUser.save()
             return True

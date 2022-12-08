@@ -88,14 +88,14 @@ class ViewUserSingle(View):
     def get(self, request, name):
         # handle unauthorized access by showing them 403 error
         if isAdminLoggedIn(request.session):
-            return render(request, 'view_user_single.html', {"user": UserClass.UserClass.getUser(self, name)})
+            return render(request, 'view_user_single.html', {"type": "admin", "user": UserClass.UserClass.getUser(self, name)})
         return render(request, '403.html', {})
 
 
 class UpdateUser(View):
     def post(self, request):
         # handle unauthorized access by showing them 403 error
-        if isAdminLoggedIn(request.session):
+        if isLoggedIn(request.session):
             input_id = request.POST.get('input_id')
             input_name = request.POST.get('input_name')
             input_pw1 = request.POST.get('input_pw1')
@@ -106,10 +106,14 @@ class UpdateUser(View):
             # Need it for certain session management
             oldName = UserClass.UserClass.getUserByID(self, int(input_id)).name
 
+            # non admin should only be able to update their profile
+            if request.session['name'] == input_name and not isAdminLoggedIn(request.session):
+                return render(request, '403.html', {})
+
             if len(input_pw1) > 0 and input_pw1 != input_pw2:
                 return render(request, "base-error.html",
                               {"message": "ERROR: Passwords do NOT match, try again.", "url": "view_user"})
-            elif input_role not in roles:
+            elif input_role is not None and input_role not in roles:
                 return render(request, "base-error.html",
                               {"message": "ERROR: invalid input role type, try again.", "url": "view_user"})
             else:
@@ -118,7 +122,12 @@ class UpdateUser(View):
                     # update session name if we are updating self
                     if request.session['name'] == oldName:
                         request.session['name'] = input_name
-                    return redirect("view_user")
+
+                    if isAdminLoggedIn(request.session):
+                        return redirect("view_user")
+                    else:
+                        return redirect("homepage_0")
+
         return render(request, '403.html', {})
 
 
@@ -135,6 +144,16 @@ class DeleteUser(View):
                 return redirect("view_user")
         return render(request, '403.html', {})
 
+
+class Profile(View):
+    # handle unauthorized access by showing them 403 error
+    def get(self, request):
+        # handle unauthorized access by showing them 403 error
+        if isAdminLoggedIn(request.session):
+            return render(request, 'view_user_single.html', {"type": "admin", "user": UserClass.UserClass.getUser(self, request.session['name'])})
+        elif isLoggedIn(request.session):
+            return render(request, 'view_user_single.html', {"type": "user", "user": UserClass.UserClass.getUser(self, request.session['name'])})
+        return render(request, '403.html', {})
 
 class Logout(View):
     def get(self, request):

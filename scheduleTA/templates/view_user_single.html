@@ -25,6 +25,7 @@
                     <label for="input_pw2" class="form-label">Confirm password</label>
                     <input type="password" class="form-control" id="input_pw2" name="input_pw2">
                 </div>
+                {% if type and type == "admin" %}
                 <div class="mb-3">
                     <label for="input_role" class="form-label">Role *</label>
                     <select class="form-select" name="input_role">
@@ -34,6 +35,7 @@
                         <option value="T">TA(T)</option>
                     </select>
                 </div>
+                {% endif %}
                 <button type="submit" class="btn btn-primary">Update</button>
                 <button type="submit" formaction="{% url 'delete_user' %}" class="btn btn-danger">Delete</button>
             </form>
