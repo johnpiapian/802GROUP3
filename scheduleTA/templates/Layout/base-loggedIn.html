@@ -1,0 +1,56 @@
+{% load static %}
+<!-- load static loads the directory defined in settings.py -->
+<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>TA Schedule App</title>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Nunito.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Nunito.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-text mx-3"><span><strong>TA Schedule App</strong></span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'homepage_0' %}"><span>Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#email"><span>Email</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}"><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><span>Logout</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid">
+                        {% if name and role %}
+                        <h4>Hello, {{ name }} | Role: {{ role }}</h4>
+                        {% endif %}
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © The Black Jaguars 2022</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+</body>
+</html>

@@ -20,20 +20,6 @@ class UserUnitTests(test_SetUp.dbSetup):
             self.assertEqual(i, UserClass.UserClass.getUser(self, i.name))
             self.assertEqual(i, UserClass.UserClass.getUser(self, i.name.upper()))
 
-    def test_passwordCorrect_00(self):
-        self.assertEqual(True, UserClass.UserClass.passwordCorrect(self,self.Colin,'1234'))
-    def test_passwordCorrect_01(self):
-        self.assertEqual(False, UserClass.UserClass.passwordCorrect(self,self.Admin,'1234'))
-    def test_passwordCorrect_02(self):
-        self.assertEqual(True, UserClass.UserClass.passwordCorrect(self,self.Colin,1234))
-    def test_passwordCorrect_03(self):
-        self.assertEqual(False, UserClass.UserClass.passwordCorrect(self,self.Admin,'pAsSwOrD'))
-    def test_passwordCorrect_04(self):
-        self.assertEqual(False, UserClass.UserClass.passwordCorrect(self, self.Admin, ''))
-    def test_passwordCorrect_05(self):
-        self.assertEqual(False, UserClass.UserClass.passwordCorrect(self, None, '1234'))
-
-
     def test_getUser_01(self):
         self.assertEqual(None, UserClass.UserClass.getUser(self, ''))
     def test_getUser_02(self):

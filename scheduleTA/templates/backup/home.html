@@ -1,0 +1,35 @@
+{% load static %}
+<!-- load static loads the directory defined in settings.py -->
+<!-- this is necessary for the link tag below to load the .css file which is in the static directory -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduling App Login</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1 class="center">TA Schedule App</h1>
+
+<form action="/" method="post">
+    {% csrf_token %}
+    <table class="center">
+        <!-- 'name=' below must match models.py variable names -->
+        <!-- check to see what Sut called them and fix name/password reference names -->
+        <tr><td class="med_text">UserID: </td></tr>
+        <tr><td><input type="text" name="name"></td></tr>
+        <tr><td class="med_text">Password: </td></tr>
+        <tr><td><input type="password" name="password"></td></tr>
+        <tr><td><input class="center" type="submit" value="Login"></td></tr>
+    </table>
+</form>
+
+<!-- If there is login error message views.py will
+pass the message from views.py in a var named message -->
+<br>
+<div class="med_text center">{{ message }}</div>
+
+</body>
+
+</html>

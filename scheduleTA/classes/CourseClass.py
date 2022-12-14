@@ -3,6 +3,7 @@ This class deals with things related Course
 """
 from app.models import User, Course, Section
 
+
 class CourseClass:
 
     def __int__(self):
@@ -19,15 +20,13 @@ class CourseClass:
             return False
         return True
 
-    # given a valid name return the associated course
-    # note: could also make it %like% instead of =equal=
-    def getCourse(self, courseName) -> object:
+    def getAllCourses(self):
         try:
-            result_from_database = Course.objects.get(name=courseName)
+            return Course.objects.all()
         except:
             return None
-        return result_from_database
 
+    # given a valid courseID return the associated course
     def getCourse(self, courseID) -> object:
         try:
             result_from_database = Course.objects.get(id=courseID)
@@ -37,13 +36,13 @@ class CourseClass:
 
     # given course object store it in the database
     def addCourse(self, courseObj) -> bool:
-        if CourseClass.courseExists(self, courseObj.name):
-            return False
         try:
+            if CourseClass.courseExists(self, courseObj.name):
+                return False
             courseObj.save()
+            return True
         except:
             return False
-        return True
 
     # given course object update the associated course
     # course object must contain name to find which record to update
@@ -57,23 +56,9 @@ class CourseClass:
                 return False
         return False
 
-    # given a valid name delete the associated course
-    def deleteCourse(self, courseName) -> bool:
-        removeCourse = CourseClass.getCourse(self, courseName)
-        if removeCourse != None:
-            try:
-                User.objects.filter(name=courseName).delete()
-            except:
-                return False
-            return True
-        return False
-
     def deleteCourse(self, courseID) -> bool:
-        removeCourse = CourseClass.getCourse(self, courseID)
-        if removeCourse != None:
-            try:
-                User.objects.filter(id=courseID).delete()
-            except:
-                return False
+        try:
+            Course.objects.filter(id=courseID).delete()
             return True
-        return False
+        except:
+            return False

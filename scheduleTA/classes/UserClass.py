@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from app.models import User, Course, Section
 
+
 class UserClass:
 
     def __int__(self):
@@ -13,71 +14,96 @@ class UserClass:
     # given a name check if there exists an account
     # associated with the name in the database
     def userExists(self, userName) -> bool:
-        result_from_database = None
         # noinspection PyBroadException
         try:
-            result_from_database = UserClass.getUser(self, userName.upper())
+            return UserClass.getUser(self, userName) is not None
         except:
             return False
-        if result_from_database is None:
-            return False
-        return True
 
-    def passwordCorrect(self, userObject, password):
+    def authenticate(self, userName, userPassword):
+        # noinspection PyBroadException
         try:
-            return userObject.password == str(password)
+            # for insensitivity
+            userName = userName.upper()
+            if not UserClass.userExists(self, userName):
+                return False
+            return User.objects.get(name=userName, password=userPassword).name == userName
         except:
             return False
 
     def getRole(self, userName):
-        result_from_database = None
         # noinspection PyBroadException
         try:
-            result_from_database = User.objects.filter(name=userName).values_list('role',flat=True)[0]
+            # for insensitivity
+            userName = userName.upper()
+            return User.objects.filter(name=userName).values_list('role', flat=True)[0]
         except:
             return None
-        return result_from_database
+
+    def getAllUsers(self) -> list:
+        try:
+            return User.objects.all()
+        except:
+            return None
 
     # given a valid name return the associated account
     # note: should only return non-sensitive information
     def getUser(self, userName) -> object:
-        result_from_database = None
         # noinspection PyBroadException
         try:
-            result_from_database = User.objects.get(name=userName.upper())
+            # for insensitivity
+            userName = userName.upper()
+            return User.objects.get(name=userName)
         except:
             return None
-        return result_from_database
+
+    # get user by id
+    def getUserByID(self, userID):
+        # noinspection PyBroadException
+        try:
+            return User.objects.get(id=userID)
+        except:
+            return None
 
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
-        if UserClass.userExists(self,userObj.name):
-            return False
         # noinspection PyBroadException
         try:
+            # for insensitivity
+            userObj.name = userObj.name.upper()
+            if UserClass.userExists(self, userObj.name):
+                return False
             userObj.save()
+            return True
         except:
             return False
-        return True
 
+    # TODO: need to revisit
     # given user object update the associated account
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
+        try:
+            tempUser = User.objects.get(id=userObj.id)
+            tempUser.name = userObj.name.upper()
 
-        if UserClass.userExists(self,userObj.name) and len(userObj.password)>1 and len(userObj.role) == 1:
-            try:
-                userObj.save()
-                return True
-            except:
-                return False
-        return False
+            if len(userObj.password) > 0:
+                tempUser.password = userObj.password
+
+            if userObj.role is not None:
+                tempUser.role = userObj.role
+
+            tempUser.save()
+            return True
+        except:
+            return False
 
     # given a valid name delete the associated account
     def deleteUser(self, userName) -> bool:
-        if UserClass.getUser(self, userName)!= None:
-            try:
-                User.objects.filter(name=userName.upper()).delete()
-            except:
+        try:
+            if UserClass.userExists(self, userName):
+                User.objects.filter(name=userName).delete()
+                return True
+            else:
                 return False
-            return True
-        return False
+        except:
+            return False
