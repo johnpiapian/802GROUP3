@@ -224,10 +224,10 @@ class CreateClass(View):
         teacher_name = request.POST.get('teacher')
         start_time = request.POST.get('start_time')
         end_time = request.POST.get('end_time')
-        c = CourseClass.CourseClass.getCourse(self, course)
 
+        t = UserClass.UserClass.getUser(self, teacher_name)
         toAdd = Class(course=CourseClass.CourseClass.getCourse(self,course), class_number = class_number,
-            room_number = room_number, teacher_name = teacher_name,
+            room_number = room_number, teacher_name = UserClass.UserClass.getUser(self, teacher_name),
             start_time = start_time, end_time = end_time)
         if ClassClass.ClassClass.addClass(self, toAdd) == True:
             return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})

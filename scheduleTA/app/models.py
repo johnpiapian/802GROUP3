@@ -19,6 +19,6 @@ class Class(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     class_number = models.IntegerField(blank=False, unique=True)
     room_number = models.IntegerField(blank=False)
-    teacher_name = models.CharField(max_length=100, blank=False)
+    teacher_name = models.ForeignKey(User, on_delete=models.CASCADE)
     start_time = models.DateField(blank=False)
     end_time = models.DateField(blank=False)
