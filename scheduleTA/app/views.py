@@ -217,19 +217,22 @@ class CreateClass(View):
         #return render(request, '403.html', {})
 
     def post(self, request):
-        #if isLoggedIn(request.session):
-        course = request.POST.get('course')
-        class_number = request.POST.get('class_number')
-        room_number = request.POST.get('room_number')
-        teacher_name = request.POST.get('teacher')
-        start_time = request.POST.get('start_time')
-        end_time = request.POST.get('end_time')
+        if isLoggedIn(request.session):
+            course = request.POST.get('course')
+            class_number = request.POST.get('class_number')
+            room_number = request.POST.get('room_number')
+            teacher_name = request.POST.get('teacher')
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
 
-        t = UserClass.UserClass.getUser(self, teacher_name)
-        toAdd = Class(course=CourseClass.CourseClass.getCourse(self,course), class_number = class_number,
+
+            toAdd = Class(course=CourseClass.CourseClass.getCourse(self,course), class_number = class_number,
             room_number = room_number, teacher_name = UserClass.UserClass.getUser(self, teacher_name),
             start_time = start_time, end_time = end_time)
-        if ClassClass.ClassClass.addClass(self, toAdd) == True:
-            return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
-
+            if ClassClass.ClassClass.addClass(self, toAdd) == True:
+             return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
+            else:
+                return render(request, 'create_class.html', {"message": "Class already exists",
+                                                             "courses": CourseClass.CourseClass.getAllCourses(self),
+                                                             "users": UserClass.UserClass.getAllUsers(self)})
         return render(request, '403.html', {})
