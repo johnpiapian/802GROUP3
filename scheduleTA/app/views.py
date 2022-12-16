@@ -230,6 +230,6 @@ class CreateClass(View):
             room_number = room_number, teacher_name = teacher_name,
             start_time = start_time, end_time = end_time)
         if ClassClass.ClassClass.addClass(self, toAdd) == True:
-            return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully."})
+            return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
 
         return render(request, '403.html', {})
