@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from classes import UserClass, CourseClass
-from .models import User, Course, Section
+from classes import UserClass, CourseClass, ClassClass
+from .models import User, Course, Class
 
 
 # Helper methods
@@ -36,6 +36,7 @@ class Home(View):
 
         request.session["name"] = form_submitted_name.upper()
         return redirect("homepage_0")
+
 
 
 class Homepage_0(View):
@@ -208,3 +209,27 @@ class CreateCourse(View):
                     return render(request, 'create_course.html', {"message": "SUCCESS! Course added successfully."})
         return render(request, '403.html', {})
 
+
+class CreateClass(View):
+    def get(self, request):
+        #if isLoggedIn(request.session):
+        return render(request, 'create_class.html', {"courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
+        #return render(request, '403.html', {})
+
+    def post(self, request):
+        #if isLoggedIn(request.session):
+        course = request.POST.get('course')
+        class_number = request.POST.get('class_number')
+        room_number = request.POST.get('room_number')
+        teacher_name = request.POST.get('teacher')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        c = CourseClass.CourseClass.getCourse(self, course)
+
+        toAdd = Class(course=CourseClass.CourseClass.getCourse(self,course), class_number = class_number,
+            room_number = room_number, teacher_name = teacher_name,
+            start_time = start_time, end_time = end_time)
+        if ClassClass.ClassClass.addClass(self, toAdd) == True:
+            return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully."})
+
+        return render(request, '403.html', {})

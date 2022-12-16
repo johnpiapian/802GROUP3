@@ -3,7 +3,7 @@ This class deals with things related Account
 """
 from django.shortcuts import render, redirect
 from django.views import View
-from app.models import User, Course, Section
+from app.models import User, Course, Class
 
 
 class UserClass:

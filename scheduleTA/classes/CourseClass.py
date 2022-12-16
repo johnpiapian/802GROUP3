@@ -1,7 +1,7 @@
 """
 This class deals with things related Course
 """
-from app.models import User, Course, Section
+from app.models import User, Course, Class
 
 
 class CourseClass:
@@ -27,9 +27,9 @@ class CourseClass:
             return None
 
     # given a valid courseID return the associated course
-    def getCourse(self, courseID) -> object:
+    def getCourse(self, courseName) -> object:
         try:
-            result_from_database = Course.objects.get(id=courseID)
+            result_from_database = Course.objects.get(name=courseName)
         except:
             return None
         return result_from_database

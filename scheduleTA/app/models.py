@@ -14,12 +14,11 @@ class Course(models.Model):
     name = models.CharField(max_length=100, blank=False, unique=True)
     credit = models.IntegerField(blank=False)
 
-
-class Section(models.Model):
+class Class(models.Model):
     id = models.AutoField(primary_key=True)
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    teacher_id = models.ForeignKey(User, on_delete=models.PROTECT)
-    name = models.CharField(max_length=100, blank=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    class_number = models.IntegerField(blank=False, unique=True)
     room_number = models.IntegerField(blank=False)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    teacher_name = models.CharField(max_length=100, blank=False)
+    start_time = models.DateField(blank=False)
+    end_time = models.DateField(blank=False)
