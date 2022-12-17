@@ -240,8 +240,11 @@ class CreateClass(View):
 
 class ManageClasses(View):
     def get(self, request):
-        if isLoggedIn(request.session):
+        if isAdminLoggedIn(request.session):
             return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self)})
+        elif isLoggedIn(request.session):
+
+            return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self, request.session['name']))})
         return render(request, '403.html', {})
 
 class DeleteClass(View):
@@ -250,3 +253,4 @@ class DeleteClass(View):
             if ClassClass.ClassClass.deleteClass(self, classID):
                 return redirect("manage_classes")
         return render(request, '403.html', {})
+
