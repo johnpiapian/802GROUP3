@@ -56,9 +56,9 @@ class ClassClass:
                 return False
         return False
 
-    def deleteClass(self, classNumber,course) -> bool:
+    def deleteClass(self, classID) -> bool:
         try:
-            Class.objects.filter(class_name=classNumber,course=course).delete()
+            Class.objects.filter(id=classID).delete()
             return True
         except:
             return False

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.views import Home, Homepage_0, CreateUser, ViewUser, ViewUserSingle, Logout, UpdateUser, DeleteUser, Profile, \
-    ManageCourse, DeleteCourse, CreateCourse, CreateClass
+    ManageCourse, DeleteCourse, CreateCourse, CreateClass, ManageClasses, DeleteClass
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,4 +39,6 @@ urlpatterns = [
 
     #Class
     path('create_class/', CreateClass.as_view(), name='create_class'),
+    path('manage_classes/', ManageClasses.as_view(), name='manage_classes'),
+    path('manage_classes/delete/<int:classID>', DeleteClass.as_view(),name='delete_class'),
 ]

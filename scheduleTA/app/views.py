@@ -237,3 +237,16 @@ class CreateClass(View):
                                                              "courses": CourseClass.CourseClass.getAllCourses(self),
                                                              "users": UserClass.UserClass.getAllUsers(self)})
         return render(request, '403.html', {})
+
+class ManageClasses(View):
+    def get(self, request):
+        if isLoggedIn(request.session):
+            return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self)})
+        return render(request, '403.html', {})
+
+class DeleteClass(View):
+    def get(self, request, classID):
+        if isLoggedIn(request.session):
+            if ClassClass.ClassClass.deleteClass(self, classID):
+                return redirect("manage_classes")
+        return render(request, '403.html', {})
