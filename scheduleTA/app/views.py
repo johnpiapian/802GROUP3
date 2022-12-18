@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from classes import UserClass, CourseClass
-from .models import User, Course, Section
+from classes import UserClass, CourseClass, ClassClass
+from .models import User, Course, Class
 
 
 # Helper methods
@@ -36,6 +36,7 @@ class Home(View):
 
         request.session["name"] = form_submitted_name.upper()
         return redirect("homepage_0")
+
 
 
 class Homepage_0(View):
@@ -206,5 +207,50 @@ class CreateCourse(View):
                 toAdd = Course(name=input_name, credit=input_credit)
                 if CourseClass.CourseClass.addCourse(self, toAdd):
                     return render(request, 'create_course.html', {"message": "SUCCESS! Course added successfully."})
+        return render(request, '403.html', {})
+
+
+class CreateClass(View):
+    def get(self, request):
+        #if isLoggedIn(request.session):
+        return render(request, 'create_class.html', {"courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
+        #return render(request, '403.html', {})
+
+    def post(self, request):
+        if isLoggedIn(request.session):
+            course = request.POST.get('course')
+            class_number = request.POST.get('class_number')
+            room_number = request.POST.get('room_number')
+            teacher_name = request.POST.get('teacher')
+            type = request.POST.get('class_type')
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
+
+
+            toAdd = Class(course=CourseClass.CourseClass.getCourse(self,course), class_number = class_number,
+            room_number = room_number, teacher_name = UserClass.UserClass.getUser(self, teacher_name),class_type=type,
+            start_time = start_time, end_time = end_time)
+            if ClassClass.ClassClass.addClass(self, toAdd) == True:
+             return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
+            else:
+                return render(request, 'create_class.html', {"message": "Class already exists",
+                                                             "courses": CourseClass.CourseClass.getAllCourses(self),
+                                                             "users": UserClass.UserClass.getAllUsers(self)})
+        return render(request, '403.html', {})
+
+class ManageClasses(View):
+    def get(self, request):
+        if isAdminLoggedIn(request.session):
+            return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self)})
+        elif isLoggedIn(request.session):
+
+            return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self, request.session['name']))})
+        return render(request, '403.html', {})
+
+class DeleteClass(View):
+    def get(self, request, classID):
+        if isLoggedIn(request.session):
+            if ClassClass.ClassClass.deleteClass(self, classID):
+                return redirect("manage_classes")
         return render(request, '403.html', {})
 

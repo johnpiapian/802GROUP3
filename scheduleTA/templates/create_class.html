@@ -1,0 +1,54 @@
+{% extends "Layout/base-loggedIn.html" %}
+
+{% block content %}
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0">New Class Info</h3>
+    </div>
+    <div class="row">
+        <div class="form-container container-sm">
+            <form action="{% url 'create_class' %}" method="post">
+                {% if message %}
+                <div class="alert alert-secondary" role="alert">{{ message }}</div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="course" class="form-label">Course Name</label>
+                    <select class="form-select" id="course" name="course">
+                        {% for course in courses %}
+                        <option value="{{ course.name }}">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="class_number" class="form-label">Class Number</label>
+                    <input type="number" class="form-control" id="class_number" name="class_number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="class_type" class="form-label">Class Type</label>
+                    <select class="form-select" id="class_type" name="class_type">
+                        <option value="LAB">Lab</option>
+                        <option value="LECTURE">Lecture</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="room_number" class="form-label">Room Number</label>
+                    <input type="number" class="form-control" id="room_number" name="room_number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="teacher" class="form-label">Teacher*</label>
+                    <select class="form-select" id="teacher" name="teacher">
+                        {% for user in users %}
+                            <option value="{{ user.name }}">{{ user.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="time" class="form-label">Start/End time</label>
+                    <input type="date" class="form-control" id="start_time" name="start_time" required>
+                    <input type="date" class="form-control" id="end_time" name="end_time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

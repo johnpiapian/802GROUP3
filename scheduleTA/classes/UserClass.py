@@ -3,7 +3,7 @@ This class deals with things related Account
 """
 from django.shortcuts import render, redirect
 from django.views import View
-from app.models import User, Course, Section
+from app.models import User, Course, Class
 
 
 class UserClass:
@@ -65,6 +65,11 @@ class UserClass:
         except:
             return None
 
+    def getUserClasses(self, userObj):
+        try:
+            return Class.objects.filter(teacher_name=userObj)
+        except:
+            return None
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
         # noinspection PyBroadException
