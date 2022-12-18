@@ -190,12 +190,12 @@ class DeleteCourse(View):
 
 class CreateCourse(View):
     def get(self, request):
-        if isLoggedIn(request.session):
+        if isLoggedIn(request.session) and isAdminLoggedIn(request.session):
             return render(request, 'create_course.html', {})
         return render(request, '403.html', {})
 
     def post(self, request):
-        if isLoggedIn(request.session):
+        if isLoggedIn(request.session) and isAdminLoggedIn(request.session):
             input_name = request.POST.get('input_name')
             input_credit = request.POST.get('input_credit')
 
