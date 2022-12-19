@@ -88,17 +88,26 @@ class UserClass:
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
         try:
+            user_is_modified = False
+
             tempUser = User.objects.get(id=userObj.id)
-            tempUser.name = userObj.name.upper()
+            if tempUser.name != userObj.name.upper():
+                tempUser.name = userObj.name.upper()
+                user_is_modified = True
 
-            if len(userObj.password) > 0:
+            if len(userObj.password) > 0 and tempUser.password != userObj.password:
                 tempUser.password = userObj.password
+                user_is_modified = True
 
-            if userObj.role is not None:
+            if userObj.role is not None and tempUser.role != userObj.role:
                 tempUser.role = userObj.role
+                user_is_modified = True
 
-            tempUser.save()
-            return True
+            if user_is_modified:
+                tempUser.save()
+                return True
+            else:
+                return False
         except:
             return False
 
