@@ -103,6 +103,7 @@ class UpdateUser(View):
             input_pw1 = request.POST.get('input_pw1')
             input_pw2 = request.POST.get('input_pw2')
             input_role = request.POST.get('input_role')
+            input_skills = request.POST.get('input_skills')
             roles = ['A', 'P', 'T']
 
             # Need it for certain session management
@@ -119,7 +120,7 @@ class UpdateUser(View):
                 return render(request, "base-error.html",
                               {"message": "ERROR: invalid input role type, try again.", "url": "view_user"})
             else:
-                userToUpdate = User(id=int(input_id), name=input_name, password=input_pw1, role=input_role)
+                userToUpdate = User(id=int(input_id), name=input_name, password=input_pw1, role=input_role, skills=input_skills)
                 if UserClass.UserClass.updateUser(self, userToUpdate):
                     # update session name if we are updating self
                     if request.session['name'] == oldName:

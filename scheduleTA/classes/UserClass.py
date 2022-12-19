@@ -103,6 +103,10 @@ class UserClass:
                 tempUser.role = userObj.role
                 user_is_modified = True
 
+            if tempUser.skills != userObj.skills:
+                tempUser.skills = userObj.skills
+                user_is_modified = True
+
             if user_is_modified:
                 tempUser.save()
                 return True
@@ -119,5 +123,21 @@ class UserClass:
                 return True
             else:
                 return False
+        except:
+            return False
+
+    def getSkills(self, userName):
+        try:
+            userName = userName.upper()
+            return User.objects.filter(name=userName).values_list('skills', flat=True)[0]
+        except:
+            return None
+
+    def updateSkills(self, userObj, userSkills):
+        try:
+            tempUser = User.objects.get(id=userObj.id)
+            tempUser.skills = userSkills
+            tempUser.save()
+            return True
         except:
             return False
