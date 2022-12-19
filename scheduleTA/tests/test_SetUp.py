@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 ##need to import user models once they are implemented.
-from app.models import User, Course, Section
+from app.models import User, Course, Class
 
 class dbSetup(TestCase):
     # set up database for tests

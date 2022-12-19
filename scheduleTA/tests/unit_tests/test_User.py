@@ -67,6 +67,7 @@ class UserUnitTests(test_SetUp.dbSetup):
         self.assertEqual(True, self.userList.contains(self.Colin))
     def test_deleteUser_01(self):
         self.assertEqual(True, UserClass.UserClass.deleteUser(self,'Colin'))
-        self.assertEqual(False, UserClass.UserClass.deleteUser(self, 'Colin'))
     def test_deleteUser_02(self):
         self.assertEqual(False, UserClass.UserClass.deleteUser(self, ''))
+    def test_deleteUser_03(self):
+        self.assertEqual(False, UserClass.UserClass.deleteUser(self, 'NameNotInDatabase'))
