@@ -35,10 +35,10 @@
                     <input type="number" class="form-control" id="room_number" name="room_number" required>
                 </div>
                 <div class="mb-3">
-                    <label for="teacher" class="form-label">Teacher*</label>
+                    <label for="teacher" class="form-label">Teacher/TA</label>
                     <select class="form-select" id="teacher" name="teacher">
                         {% for user in users %}
-                            <option value="{{ user.name }}">{{ user.name }}</option>
+                            <option value="{{ user.name }}">{{ user.name }} - Skills: {{ user.skills }}</option>
                         {% endfor %}
                     </select>
                 </div>

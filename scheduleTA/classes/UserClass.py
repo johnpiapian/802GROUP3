@@ -67,9 +67,11 @@ class UserClass:
 
     def getUserClasses(self, userObj):
         try:
-            return Class.objects.filter(teacher_name=userObj)
+            tempObj = Class.objects.filter(teacher_name=userObj).values('course')
+            return Class.objects.filter(course__in=tempObj)
         except:
             return None
+
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
         # noinspection PyBroadException
@@ -126,6 +128,7 @@ class UserClass:
         except:
             return False
 
+## dont think we actually need these
     def getSkills(self, userName):
         try:
             userName = userName.upper()
