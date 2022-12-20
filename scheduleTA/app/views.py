@@ -20,6 +20,14 @@ def isAdminLoggedIn(session):
     return False
 
 
+def isProfessorLoggedIn(session):
+    if isLoggedIn(session):
+        # check if the logged-in user has admin role
+        if UserClass.UserClass.getRole(None, session['name']) == 'P':
+            return True
+    return False
+
+
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -215,13 +223,16 @@ class CreateCourse(View):
 
 class CreateClass(View):
     def get(self, request):
-        # if isLoggedIn(request.session):
-        return render(request, 'create_class.html', {"courses": CourseClass.CourseClass.getAllCourses(self),
-                                                     "users": UserClass.UserClass.getAllUsers(self)})
-        # return render(request, '403.html', {})
+        if isLoggedIn(request.session):
+            if isAdminLoggedIn(request.session) or isProfessorLoggedIn(request.session):
+                return render(request, 'create_class.html', {"courses": CourseClass.CourseClass.getAllCourses(self),
+                                                             "users": UserClass.UserClass.getAllUsers(self)})
+            else:
+                return render(request, '403.html', {})
+        return redirect('homepage_0')
 
     def post(self, request):
-        if isLoggedIn(request.session):
+        if isAdminLoggedIn(request.session) or isProfessorLoggedIn(request.session):
             course = request.POST.get('course')
             class_number = request.POST.get('class_number')
             room_number = request.POST.get('room_number')
@@ -250,7 +261,7 @@ class ManageClasses(View):
         if isAdminLoggedIn(request.session):
             return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self),
                                                            "users": UserClass.UserClass.getAllUsers(self)})
-        elif isLoggedIn(request.session):
+        elif isProfessorLoggedIn(request.session):
             return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,
                                                                                                          UserClass.UserClass.getUser(
                                                                                                              self,
