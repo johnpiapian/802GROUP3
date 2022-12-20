@@ -37,12 +37,15 @@ class UserUnitTests(test_SetUp.dbSetup):
         self.assertEqual(False, UserClass.UserClass.addUser(self, self.ColinRchange))
 
     def test_updateUser_00(self):
-
-        self.assertEqual(True, UserClass.UserClass.updateUser(self, self.ColinPchange))
+        self.Colin.password = "newPassword!"
+        self.assertEqual(True, UserClass.UserClass.updateUser(self, self.Colin))
+        #self.assertEqual(True, UserClass.UserClass.updateUser(self, self.ColinPchange))
     def test_updateUser_01(self):
         self.assertEqual(False, UserClass.UserClass.updateUser(self, self.Colin))
     def test_updateUser_02(self):
-        self.assertEqual(True, UserClass.UserClass.updateUser(self, self.ColinRchange))
+        self.Colin.role = "T"
+        self.assertEqual(True, UserClass.UserClass.updateUser(self, self.Colin))
+        #self.assertEqual(True, UserClass.UserClass.updateUser(self, self.ColinRchange))
     def test_updateUser_03(self):
         self.ColinPchange.password = ''
         self.assertEqual(False, UserClass.UserClass.updateUser(self, self.ColinPchange))
@@ -67,6 +70,7 @@ class UserUnitTests(test_SetUp.dbSetup):
         self.assertEqual(True, self.userList.contains(self.Colin))
     def test_deleteUser_01(self):
         self.assertEqual(True, UserClass.UserClass.deleteUser(self,'Colin'))
-        self.assertEqual(False, UserClass.UserClass.deleteUser(self, 'Colin'))
     def test_deleteUser_02(self):
         self.assertEqual(False, UserClass.UserClass.deleteUser(self, ''))
+    def test_deleteUser_03(self):
+        self.assertEqual(False, UserClass.UserClass.deleteUser(self, 'NameNotInDatabase'))

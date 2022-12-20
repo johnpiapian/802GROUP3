@@ -7,6 +7,7 @@ class User(models.Model):
     role = models.CharField(max_length=1, blank=False)
     name = models.CharField(max_length=100, blank=False, unique=True)
     password = models.CharField(max_length=100, blank=False)
+    skills = models.TextField(blank=True)
 
 
 class Course(models.Model):

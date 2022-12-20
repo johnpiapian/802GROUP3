@@ -31,6 +31,24 @@
                     <td>{{ class.end_time }}</td>
                     <td><a href="{% url 'delete_class' classID=class.id %}" class="link-danger">Delete</a> </td>
                 </tr>
+                <!-- begin update teacher/ta code -->
+                <!-- this td/cell will be width of cell #1 in table -->
+                <tr>
+                <form action="{% url 'manage_classes' %}" method="post">
+                {% csrf_token %}
+                <td><label for="teacher" class="form-label">Update Teacher/TA:</label></td>
+                    <td>
+                    <select class="form-select" id="teacher" name="teacher">
+                        {% for user in users %}
+                            <option value="{{ user.name }}">{{ user.name }} - Skills: {{ user.skills }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="update_class_number" value="{{ class.class_number }}">
+                </td>
+                <td><button class="btn btn-outline-primary btn-block my-3" type="submit">Update Teacher/TA</button></td>
+                </form>
+                </tr>
+                <!-- end update teacher/ta code -->
             {% endfor %}
             </tbody>
         </table>

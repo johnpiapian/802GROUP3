@@ -67,9 +67,11 @@ class UserClass:
 
     def getUserClasses(self, userObj):
         try:
-            return Class.objects.filter(teacher_name=userObj)
+            tempObj = Class.objects.filter(teacher_name=userObj).values('course')
+            return Class.objects.filter(course__in=tempObj)
         except:
             return None
+
     # given user object store it in the database
     def addUser(self, userObj) -> bool:
         # noinspection PyBroadException
@@ -88,17 +90,30 @@ class UserClass:
     # user object must contain name to find which record to update
     def updateUser(self, userObj) -> bool:
         try:
+            user_is_modified = False
+
             tempUser = User.objects.get(id=userObj.id)
-            tempUser.name = userObj.name.upper()
+            if tempUser.name != userObj.name.upper():
+                tempUser.name = userObj.name.upper()
+                user_is_modified = True
 
-            if len(userObj.password) > 0:
+            if len(userObj.password) > 0 and tempUser.password != userObj.password:
                 tempUser.password = userObj.password
+                user_is_modified = True
 
-            if userObj.role is not None:
+            if userObj.role is not None and tempUser.role != userObj.role:
                 tempUser.role = userObj.role
+                user_is_modified = True
 
-            tempUser.save()
-            return True
+            if tempUser.skills != userObj.skills:
+                tempUser.skills = userObj.skills
+                user_is_modified = True
+
+            if user_is_modified:
+                tempUser.save()
+                return True
+            else:
+                return False
         except:
             return False
 
@@ -110,5 +125,22 @@ class UserClass:
                 return True
             else:
                 return False
+        except:
+            return False
+
+## dont think we actually need these
+    def getSkills(self, userName):
+        try:
+            userName = userName.upper()
+            return User.objects.filter(name=userName).values_list('skills', flat=True)[0]
+        except:
+            return None
+
+    def updateSkills(self, userObj, userSkills):
+        try:
+            tempUser = User.objects.get(id=userObj.id)
+            tempUser.skills = userSkills
+            tempUser.save()
+            return True
         except:
             return False
