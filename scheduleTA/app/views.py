@@ -232,19 +232,37 @@ class CreateClass(View):
             room_number = room_number, teacher_name = UserClass.UserClass.getUser(self, teacher_name),class_type=type,
             start_time = start_time, end_time = end_time)
             if ClassClass.ClassClass.addClass(self, toAdd) == True:
-             return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self), "users":UserClass.UserClass.getAllUsers(self)})
+             return render(request, 'create_class.html', {"message": "SUCCESS! Class added successfully.","courses": CourseClass.CourseClass.getAllCourses(self),"users":UserClass.UserClass.getAllUsers(self)})
             else:
-                return render(request, 'create_class.html', {"message": "Class already exists",
-                                                             "courses": CourseClass.CourseClass.getAllCourses(self),
-                                                             "users": UserClass.UserClass.getAllUsers(self)})
+                return render(request, 'create_class.html', {"message": "Class already exists","courses": CourseClass.CourseClass.getAllCourses(self),"users": UserClass.UserClass.getAllUsers(self)})
         return render(request, '403.html', {})
 
 class ManageClasses(View):
     def get(self, request):
         if isAdminLoggedIn(request.session):
-            return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self)})
+            return render(request, 'manage_classes.html',{"classes": ClassClass.ClassClass.getAllClasses(self),"users":UserClass.UserClass.getAllUsers(self)})
         elif isLoggedIn(request.session):
-            return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self, request.session['name']))})
+            return render(request, 'manage_classes.html',{"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self, request.session['name'])),"users":UserClass.UserClass.getAllUsers(self)})
+        return render(request, '403.html', {})
+
+    def post(self, request):
+        if isAdminLoggedIn(request.session):
+            teacher_name = request.POST.get('teacher')
+            update_class_number = request.POST.get('update_class_number')
+            class_to_be_updated = Class.objects.get(class_number=update_class_number)
+            class_to_be_updated.teacher_name = UserClass.UserClass.getUser(self, teacher_name)
+            class_to_be_updated.save()
+            return render(request, 'manage_classes.html', {"classes": ClassClass.ClassClass.getAllClasses(self), "users":UserClass.UserClass.getAllUsers(self)})
+        if isLoggedIn(request.session):
+            teacher_name = request.POST.get('teacher')
+            update_class_number = request.POST.get('update_class_number')
+            class_to_be_updated = Class.objects.get(class_number=update_class_number)
+            if class_to_be_updated.teacher_name.name == request.session['name']:
+                return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self,request.session['name'])),"users": UserClass.UserClass.getAllUsers(self),"message":"ERROR: Cannot remove self from Class, speak to an Admin."})
+            else:
+                class_to_be_updated.teacher_name = UserClass.UserClass.getUser(self, teacher_name)
+                class_to_be_updated.save()
+                return render(request, 'manage_classes.html', {"classes": UserClass.UserClass.getUserClasses(self,UserClass.UserClass.getUser(self, request.session['name'])), "users":UserClass.UserClass.getAllUsers(self),"message":"SUCCESS: Teacher/TA updated!"})
         return render(request, '403.html', {})
 
 class DeleteClass(View):
