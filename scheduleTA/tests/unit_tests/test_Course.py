@@ -15,11 +15,6 @@ class CourseUnitTest(test_SetUp.dbSetup):
     def test_courseExists_03(self):
         self.assertEqual(False, CourseClass.CourseClass.courseExists(self,4))
 
-    def test_getCourse_00(self):
-        for i in self.courseList:
-            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.name))
-            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.id.__str__))
-            self.assertEqual(i, CourseClass.CourseClass.getCourse(self,i.id))
     def test_getCourse_01(self):
         self.assertEqual(None, CourseClass.CourseClass.getCourse(self,''))
     def test_addCourse_00(self):
@@ -35,11 +30,8 @@ class CourseUnitTest(test_SetUp.dbSetup):
         self.Gym.credit = ''
         self.assertEqual(False,CourseClass.CourseClass.addCourse(self,self.Gym))
 
-
     def test_updateCourse_00(self):
         self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,self.MathChange))
-    def test_updateCourse_01(self):
-        self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.Sci))
     def test_updateCourse_02(self):
         self.assertEqual(False, CourseClass.CourseClass.updateCourse(self,self.engChange))
     def test_updateCourse_03(self):
@@ -51,18 +43,25 @@ class CourseUnitTest(test_SetUp.dbSetup):
         self.eng.credit=1
         self.assertEqual(True, CourseClass.CourseClass.updateCourse(self,self.eng))
 
+    ## every test_ function recreates every mock object.
+    ## you CANNOT call .contains in a separate test_ function
+    ## because the mock objects are recreated fresh for every test.
+    ## -Nick
+    ## also, one of tests provided the literal '3' as an argument,
+    ## 3 is actually the ID of some mock object so it was deleting it
+
     def test_deleteCourse_00(self):
         self.assertEqual(True,self.courseList.contains(self.Math))
     def test_deleteCourse_01(self):
-        self.assertEqual(True,CourseClass.CourseClass.deleteCourse(self,'Math'))
+        self.assertEqual(True, self.courseList.contains(self.Math))
+        self.assertEqual(True,CourseClass.CourseClass.deleteCourse(self,self.Math.id))
+        self.assertEqual(False, self.courseList.contains(self.Math))
     def test_deleteCourse_02(self):
-        self.assertEqual(False,self.courseList.contains(self.Math))
-    def test_deleteCourse_03(self):
-        self.assertEqual(False,CourseClass.CourseClass.deleteCourse(self,'Math'))
+        self.assertEqual(True, self.courseList.contains(self.Sci))
+        self.assertEqual(True,CourseClass.CourseClass.deleteCourse(self,self.Sci.id))
+        self.assertEqual(False, self.courseList.contains(self.Sci))
     def test_deleteCourse_04(self):
         self.assertEqual(False,CourseClass.CourseClass.deleteCourse(self,''))
     def test_deleteCourse_05(self):
         self.assertEqual(False, CourseClass.CourseClass.deleteCourse(self,'Gym'))
-    def test_deleteCourse_06(self):
-        self.assertEqual(False, CourseClass.CourseClass.deleteCourse(self,3))
 

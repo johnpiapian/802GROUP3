@@ -21,12 +21,12 @@ class dbSetup(TestCase):
 
         self.userList = User.objects.all()
 
-        self.Math = Course.objects.create(name='MATH',credit=4)
+        self.Math = Course.objects.create(id=666,name='MATH',credit=4)
         self.Sci = Course.objects.create(name='SCIENCE',credit=3)
-        self.eng = Course.objects.create(name='ENGLISH',credit=4)
+        self.eng = Course.objects.create(id=555,name='ENGLISH',credit=4)
 
-        self.MathChange = Course(name='MATH',credit=2)
-        self.engChange = Course(name='', credit=4)
+        self.MathChange = Course(id=666,name='MATH',credit=2)
+        self.engChange = Course(id=555, name='', credit=4)
 
         self.art = Course(name="ART",credit=4)
         self.music= Course(name='MUSIC',credit=2)
