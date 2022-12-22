@@ -63,7 +63,7 @@ class CreateUser(View):
         if isAdminLoggedIn(request.session):
             return render(request, "create_user.html", {})
         elif isLoggedIn(request.session):
-            return render(request, '403.html', {})
+            return render(request, '403.html', {}, status=403)
         return redirect("home")
 
     def post(self, request):
@@ -82,7 +82,7 @@ class CreateUser(View):
                 else:
                     return render(request, 'create_user.html',
                                   {"message": "ERROR: Username already exists in database, try again."})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class ViewUser(View):
@@ -90,7 +90,7 @@ class ViewUser(View):
         # handle unauthorized access by showing them 403 error
         if isAdminLoggedIn(request.session):
             return render(request, 'view_user.html', {"users": UserClass.UserClass.getAllUsers(self)})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class ViewUserSingle(View):
@@ -99,7 +99,7 @@ class ViewUserSingle(View):
         if isAdminLoggedIn(request.session):
             return render(request, 'view_user_single.html',
                           {"type": "admin", "user": UserClass.UserClass.getUser(self, name)})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class UpdateUser(View):
@@ -119,7 +119,7 @@ class UpdateUser(View):
 
             # non admin should be able to update only their profile
             if oldName != request.session['name'] and not isAdminLoggedIn(request.session):
-                return render(request, '403.html', {})
+                return render(request, '403.html', {}, status=403)
 
             if len(input_pw1) > 0 and input_pw1 != input_pw2:
                 return render(request, "base-error.html",
@@ -140,7 +140,7 @@ class UpdateUser(View):
                     else:
                         return redirect("homepage_0")
 
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class DeleteUser(View):
@@ -152,14 +152,14 @@ class DeleteUser(View):
 
             # non-admin user should only be able to delete their profile
             if input_name != request.session['name'] and not isAdminLoggedIn(request.session):
-                return render(request, '403.html', {})
+                return render(request, '403.html', {}, status=403)
 
             if UserClass.UserClass.getUser(self, input_name).id == int(input_id) and UserClass.UserClass.deleteUser(
                     self, input_name):
                 if request.session['name'] == input_name:
                     return redirect("logout")
                 return redirect("view_user")
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class Profile(View):
@@ -172,7 +172,7 @@ class Profile(View):
         elif isLoggedIn(request.session):
             return render(request, 'view_user_single.html',
                           {"type": "user", "user": UserClass.UserClass.getUser(self, request.session['name'])})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class Logout(View):
@@ -188,7 +188,7 @@ class ManageCourse(View):
     def get(self, request):
         if isAdminLoggedIn(request.session):
             return render(request, 'manage_course.html', {"courses": CourseClass.CourseClass.getAllCourses(self)})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class DeleteCourse(View):
@@ -196,14 +196,14 @@ class DeleteCourse(View):
         if isLoggedIn(request.session):
             if CourseClass.CourseClass.deleteCourse(self, courseID):
                 return redirect("manage_course")
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class CreateCourse(View):
     def get(self, request):
         if isLoggedIn(request.session) and isAdminLoggedIn(request.session):
             return render(request, 'create_course.html', {})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
     def post(self, request):
         if isLoggedIn(request.session) and isAdminLoggedIn(request.session):
@@ -218,7 +218,7 @@ class CreateCourse(View):
                 toAdd = Course(name=input_name, credit=input_credit)
                 if CourseClass.CourseClass.addCourse(self, toAdd):
                     return render(request, 'create_course.html', {"message": "SUCCESS! Course added successfully."})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class CreateClass(View):
@@ -228,7 +228,7 @@ class CreateClass(View):
                 return render(request, 'create_class.html', {"courses": CourseClass.CourseClass.getAllCourses(self),
                                                              "users": UserClass.UserClass.getAllUsers(self)})
             else:
-                return render(request, '403.html', {})
+                return render(request, '403.html', {}, status=403)
         return redirect('homepage_0')
 
     def post(self, request):
@@ -253,7 +253,7 @@ class CreateClass(View):
                 return render(request, 'create_class.html', {"message": "Class already exists",
                                                              "courses": CourseClass.CourseClass.getAllCourses(self),
                                                              "users": UserClass.UserClass.getAllUsers(self)})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class ManageClasses(View):
@@ -268,7 +268,7 @@ class ManageClasses(View):
                                                                                                              request.session[
                                                                                                                  'name'])),
                                                            "users": UserClass.UserClass.getAllUsers(self)})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
     def post(self, request):
         if isAdminLoggedIn(request.session):
@@ -301,7 +301,7 @@ class ManageClasses(View):
                                                                                                                      'name'])),
                                                                "users": UserClass.UserClass.getAllUsers(self),
                                                                "message": "SUCCESS: Teacher/TA updated!"})
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
 
 
 class DeleteClass(View):
@@ -309,4 +309,4 @@ class DeleteClass(View):
         if isLoggedIn(request.session):
             if ClassClass.ClassClass.deleteClass(self, classID):
                 return redirect("manage_classes")
-        return render(request, '403.html', {})
+        return render(request, '403.html', {}, status=403)
