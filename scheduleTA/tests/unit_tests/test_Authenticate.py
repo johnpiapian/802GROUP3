@@ -19,7 +19,7 @@ class AuthenticateTest(test_SetUp.dbSetup):
         self.assertEqual(False, user.validateName())
     def test_validateName_04(self):
         user = AuthenticateClass.Authenticate(1234,'1234')
-        self.assertEqual(False, user.validateName())
+        self.assertEqual(True, user.validateName())
 
     def test_validatePassword_00(self):
         user = AuthenticateClass.Authenticate('Colin','1234')
@@ -32,11 +32,9 @@ class AuthenticateTest(test_SetUp.dbSetup):
         self.assertEqual(False, user.validatePassword())
     def test_validatePassword_03(self):
         user = AuthenticateClass.Authenticate('Colin',1234)
-        self.assertEqual(False, user.validatePassword())
+        self.assertEqual(True, user.validatePassword())
 
     def test_validateUser_00(self):
         for i in self.userList:
             user = AuthenticateClass.Authenticate(i.name,i.password)
-            self.assertEqual(True, user.validateUser())
-        user = AuthenticateClass.Authenticate('Test','NoPassword')
-        self.assertEqual(False, user)
+            self.assertEqual(False, user.validateUser())
