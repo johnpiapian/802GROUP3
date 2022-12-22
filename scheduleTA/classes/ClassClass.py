@@ -47,7 +47,7 @@ class ClassClass:
     # given class object update the associated class
     # class object must contain name to find which record to update
     def updateClass(self, classObj) -> bool:
-        c = ClassClass.getClass(self, classObj.class_number)
+        c = ClassClass.getClass(self, classObj.class_number, classObj.course)
         if c != None:
             try:
                 classObj.save()
